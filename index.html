@@ -1,0 +1,191 @@
+
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#102b46">
+<title>AI Wastewater OS | Marvdasht</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#f1f5f9;color:#172b40;font-family:Tahoma,Arial,sans-serif}
+header{background:#102b46;color:white;padding:20px}
+header h2{margin:0 0 8px}
+header small{color:#b9d4e8}
+nav{display:flex;overflow:auto;background:white;border-bottom:1px solid #ddd}
+nav button{border:0;background:white;padding:15px 13px;white-space:nowrap;color:#28445d}
+nav button.active{color:#087c9e;border-bottom:3px solid #087c9e;font-weight:bold}
+main{max-width:1050px;margin:auto;padding:16px}
+section{display:none}
+section.active{display:block}
+h3{color:#164363}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:12px}
+.card{background:white;padding:16px;border-radius:12px;box-shadow:0 2px 8px #0000000b;margin-bottom:12px}
+.kpi{font-size:24px;font-weight:bold;color:#087c9e;margin-top:10px}
+label{display:block;margin:12px 0 6px;font-size:13px}
+input,select,textarea{width:100%;padding:12px;border:1px solid #cbd5e1;border-radius:8px;background:white;font-family:inherit}
+textarea{min-height:75px}
+button.primary{background:#087c9e;color:white;border:0;border-radius:8px;padding:12px 18px;margin-top:14px;font-family:inherit}
+button.danger{background:#b42318;color:white;border:0;border-radius:7px;padding:8px}
+.item{border-bottom:1px solid #eee;padding:12px 0}
+.muted{color:#718096;font-size:12px}
+footer{text-align:center;padding:25px;color:#718096;font-size:12px}
+</style>
+</head>
+<body>
+<header>
+<h2>AI Wastewater OS</h2>
+<div>سامانه هوشمند مدیریت تصفیه‌خانه فاضلاب مرودشت</div>
+<small>Marvdasht WWTP | نسخه آزمایشی 1.0</small>
+</header>
+
+<nav>
+<button class="active" onclick="show('dashboard',this)">داشبورد</button>
+<button onclick="show('report',this)">ثبت گزارش</button>
+<button onclick="show('history',this)">سوابق</button>
+<button onclick="show('equipment',this)">تجهیزات و PM</button>
+<button onclick="show('backup',this)">پشتیبان‌گیری</button>
+</nav>
+
+<main>
+<section id="dashboard" class="active">
+<h3>داشبورد بهره‌برداری</h3>
+<div class="grid">
+<div class="card">دبی ورودی<div class="kpi" id="inflow">—</div><small>مترمکعب در روز</small></div>
+<div class="card">دبی خروجی<div class="kpi" id="outflow">—</div><small>مترمکعب در روز</small></div>
+<div class="card">مصرف برق<div class="kpi" id="energy">—</div><small>کیلووات ساعت در روز</small></div>
+<div class="card">تعداد گزارش‌ها<div class="kpi" id="count">0</div></div>
+</div>
+<div class="card">
+<h3>آخرین وضعیت ثبت‌شده</h3>
+<div id="latest">هنوز گزارشی ثبت نشده است.</div>
+</div>
+<div class="card">
+<h3>راهنمای سامانه</h3>
+ثبت اطلاعات واقعی بهره‌برداری از بخش گزارش روزانه انجام می‌شود. اطلاعات واردشده در همین مرورگر ذخیره می‌شود.
+</div>
+</section>
+
+<section id="report">
+<h3>ثبت گزارش روزانه</h3>
+<div class="card">
+<form id="reportForm">
+<label>تاریخ گزارش</label>
+<input type="date" id="date" required>
+<div class="grid">
+<div><label>دبی ورودی (m³/day)</label><input type="number" id="fi" step="any" min="0"></div>
+<div><label>دبی خروجی (m³/day)</label><input type="number" id="fo" step="any" min="0"></div>
+<div><label>مصرف برق (kWh/day)</label><input type="number" id="power" step="any" min="0"></div>
+<div><label>COD ورودی (mg/L)</label><input type="number" id="ci" step="any" min="0"></div>
+<div><label>COD خروجی (mg/L)</label><input type="number" id="co" step="any" min="0"></div>
+<div><label>BOD ورودی (mg/L)</label><input type="number" id="bi" step="any" min="0"></div>
+<div><label>BOD خروجی (mg/L)</label><input type="number" id="bo" step="any" min="0"></div>
+<div><label>TSS خروجی (mg/L)</label><input type="number" id="tss" step="any" min="0"></div>
+<div><label>تعداد بلوئرهای در سرویس</label><input type="number" id="blowers" min="0"></div>
+<div><label>تعداد پمپ‌های در سرویس</label><input type="number" id="pumps" min="0"></div>
+</div>
+<label>وضعیت عمومی تصفیه‌خانه</label>
+<select id="status"><option value="">انتخاب کنید</option><option>عادی</option><option>هشدار</option><option>اضطراری</option></select>
+<label>توضیحات و اقدامات انجام‌شده</label>
+<textarea id="notes"></textarea>
+<button class="primary" type="submit">ذخیره گزارش</button>
+</form>
+</div>
+</section>
+
+<section id="history">
+<h3>سوابق گزارش روزانه</h3>
+<div class="card" id="records">گزارشی وجود ندارد.</div>
+</section>
+
+<section id="equipment">
+<h3>مدیریت تجهیزات و نگهداری و تعمیرات</h3>
+<div class="card">
+<form id="equipmentForm">
+<label>نام تجهیز</label><input id="eqname" required>
+<label>نوع تجهیز</label><input id="eqtype">
+<label>مشخصات فنی</label><input id="eqspec">
+<label>وضعیت تجهیز</label>
+<select id="eqstatus"><option>در سرویس</option><option>خارج از سرویس</option><option>نیازمند تعمیر</option></select>
+<div class="grid">
+<div><label>آخرین سرویس</label><input type="date" id="lastservice"></div>
+<div><label>سرویس بعدی</label><input type="date" id="nextservice"></div>
+</div>
+<button class="primary" type="submit">ثبت تجهیز</button>
+</form>
+</div>
+<div class="card" id="equipmentList">تجهیزی ثبت نشده است.</div>
+</section>
+
+<section id="backup">
+<h3>پشتیبان‌گیری و بازیابی</h3>
+<div class="card">
+<p>برای نگهداری اطلاعات، نسخه پشتیبان JSON تهیه کنید.</p>
+<button class="primary" onclick="backup()">دریافت فایل پشتیبان</button>
+<label>بازیابی اطلاعات از فایل JSON</label>
+<input type="file" id="restoreFile" accept=".json">
+<button class="primary" onclick="restore()">بازیابی اطلاعات</button>
+</div>
+<div class="card">
+<h3>حذف تمام اطلاعات</h3>
+<p class="muted">این عملیات برگشت‌ناپذیر است. قبل از آن نسخه پشتیبان تهیه کنید.</p>
+<button class="danger" onclick="clearAll()">حذف همه اطلاعات</button>
+</div>
+</section>
+</main>
+
+<footer>AI Wastewater OS | Marvdasht WWTP</footer>
+
+<script>
+const KEY='aiwastewater_marvdasht_v1';
+let data=JSON.parse(localStorage.getItem(KEY)||'{"reports":[],"equipment":[]}');
+function save(){localStorage.setItem(KEY,JSON.stringify(data));render()}
+function show(id,btn){
+document.querySelectorAll('main section').forEach(x=>x.classList.remove('active'));
+document.getElementById(id).classList.add('active');
+document.querySelectorAll('nav button').forEach(x=>x.classList.remove('active'));
+btn.classList.add('active');
+render();
+}
+document.getElementById('date').value=new Date().toISOString().slice(0,10);
+
+document.getElementById('reportForm').onsubmit=e=>{
+e.preventDefault();
+let r={};
+['date','fi','fo','power','ci','co','bi','bo','tss','blowers','pumps','status','notes'].forEach(k=>r[k]=document.getElementById(k).value);
+data.reports.unshift(r);save();e.target.reset();
+document.getElementById('date').value=new Date().toISOString().slice(0,10);
+alert('گزارش ذخیره شد.');
+};
+document.getElementById('equipmentForm').onsubmit=e=>{
+e.preventDefault();
+let q={};
+['eqname','eqtype','eqspec','eqstatus','lastservice','nextservice'].forEach(k=>q[k]=document.getElementById(k).value);
+data.equipment.push(q);save();e.target.reset();alert('تجهیز ثبت شد.');
+};
+function render(){
+let a=data.reports;
+document.getElementById('count').textContent=a.length;
+let r=a[0];
+document.getElementById('inflow').textContent=r?.fi||'—';
+document.getElementById('outflow').textContent=r?.fo||'—';
+document.getElementById('energy').textContent=r?.power||'—';
+document.getElementById('latest').textContent=r?'تاریخ: '+r.date+' | وضعیت: '+(r.status||'—'):'هنوز گزارشی ثبت نشده است.';
+document.getElementById('records').innerHTML=a.length?a.map((r,i)=>`<div class="item"><b>${r.date}</b><p>دبی ورودی: ${r.fi||'—'} | دبی خروجی: ${r.fo||'—'} | برق: ${r.power||'—'}</p><p>COD خروجی: ${r.co||'—'} | BOD خروجی: ${r.bo||'—'} | TSS: ${r.tss||'—'}</p><p>${r.status||'—'} – ${r.notes||''}</p><button class="danger" onclick="delReport(${i})">حذف</button></div>`).join(''):'گزارشی وجود ندارد.';
+document.getElementById('equipmentList').innerHTML=data.equipment.length?data.equipment.map((q,i)=>`<div class="item"><b>${q.eqname}</b><p>${q.eqtype||'—'} | ${q.eqstatus}</p><p>آخرین سرویس: ${q.lastservice||'—'} | سرویس بعدی: ${q.nextservice||'—'}</p><p>${q.eqspec||''}</p><button class="danger" onclick="delEquipment(${i})">حذف</button></div>`).join(''):'تجهیزی ثبت نشده است.';
+}
+function delReport(i){if(confirm('گزارش حذف شود؟')){data.reports.splice(i,1);save()}}
+function delEquipment(i){if(confirm('تجهیز حذف شود؟')){data.equipment.splice(i,1);save()}}
+function backup(){
+let blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
+let a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='Marvdasht-WWTP-backup.json';a.click();URL.revokeObjectURL(a.href);
+}
+function restore(){
+let f=document.getElementById('restoreFile').files[0];if(!f)return alert('ابتدا فایل را انتخاب کنید.');
+let reader=new FileReader();reader.onload=()=>{try{let x=JSON.parse(reader.result);if(!Array.isArray(x.reports)||!Array.isArray(x.equipment))throw Error();data=x;save();alert('اطلاعات بازیابی شد.')}catch(e){alert('فایل پشتیبان معتبر نیست.')}};reader.readAsText(f);
+}
+function clearAll(){if(confirm('آیا از حذف تمام اطلاعات مطمئن هستید؟')){data={reports:[],equipment:[]};save();}}
+render();
+</script>
+</body>
+</html>
