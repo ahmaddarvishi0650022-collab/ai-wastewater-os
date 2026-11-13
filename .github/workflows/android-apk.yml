@@ -1,0 +1,231 @@
+
+name: Build AI Wastewater OS APK
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Get repository
+        uses: actions/checkout@v4
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Install Android SDK packages
+        run: |
+          yes | sdkmanager --licenses
+          sdkmanager "platforms;android-35" "build-tools;35.0.0"
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.9'
+
+      - name: Create Android project
+        run: |
+          mkdir -p app/src/main/java/com/aiwastewater/os
+          mkdir -p app/src/main/assets
+
+          cp index.html app/src/main/assets/index.html
+          cp network.html app/src/main/assets/network.html
+
+          cat > settings.gradle <<'EOF'
+          pluginManagement {
+              repositories {
+                  google()
+                  mavenCentral()
+                  gradlePluginPortal()
+              }
+          }
+          dependencyResolutionManagement {
+              repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+              repositories {
+                  google()
+                  mavenCentral()
+              }
+          }
+          rootProject.name = "AI-Wastewater-OS"
+          include ':app'
+          EOF
+
+          cat > build.gradle <<'EOF'
+          plugins {
+              id 'com.android.application' version '8.7.3' apply false
+          }
+          EOF
+
+          cat > app/build.gradle <<'EOF'
+          plugins {
+              id 'com.android.application'
+          }
+
+          android {
+              namespace 'com.aiwastewater.os'
+              compileSdk 35
+
+              defaultConfig {
+                  applicationId 'com.aiwastewater.os'
+                  minSdk 23
+                  targetSdk 35
+                  versionCode 1
+                  versionName '1.0'
+              }
+
+              compileOptions {
+                  sourceCompatibility JavaVersion.VERSION_17
+                  targetCompatibility JavaVersion.VERSION_17
+              }
+          }
+          EOF
+
+          cat > app/src/main/AndroidManifest.xml <<'EOF'
+          <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+              <uses-permission android:name="android.permission.INTERNET" />
+              <application
+                  android:allowBackup="true"
+                  android:label="AI Wastewater OS"
+                  android:theme="@android:style/Theme.Material.Light.NoActionBar"
+                  android:usesCleartextTraffic="false">
+                  <activity
+                      android:name=".MainActivity"
+                      android:screenOrientation="unspecified"
+                      android:exported="true">
+                      <intent-filter>
+                          <action android:name="android.intent.action.MAIN" />
+                          <category android:name="android.intent.category.LAUNCHER" />
+                      </intent-filter>
+                  </activity>
+              </application>
+          </manifest>
+          EOF
+
+          cat > app/src/main/java/com/aiwastewater/os/MainActivity.java <<'EOF'
+          package com.aiwastewater.os;
+
+          import android.app.Activity;
+          import android.os.Bundle;
+          import android.webkit.WebView;
+          import android.webkit.WebViewClient;
+          import android.webkit.WebChromeClient;
+          import android.webkit.WebSettings;
+          import android.webkit.WebResourceRequest;
+
+          public class MainActivity extends Activity {
+              WebView webView;
+
+              @Override
+              protected void onCreate(Bundle savedInstanceState) {
+                  super.onCreate(savedInstanceState);
+
+                  webView = new WebView(this);
+                  setContentView(webView);
+
+                  WebSettings settings = webView.getSettings();
+                  settings.setJavaScriptEnabled(true);
+                  settings.setDomStorageEnabled(true);
+                  settings.setDatabaseEnabled(true);
+                  settings.setAllowFileAccess(true);
+                  settings.setAllowContentAccess(true);
+                  settings.setJavaScriptCanOpenWindowsAutomatically(true);
+                  settings.setSupportMultipleWindows(false);
+
+                  webView.setWebViewClient(new WebViewClient());
+                  webView.setWebChromeClient(new WebChromeClient());
+
+                  webView.loadUrl("file:///android_asset/home.html");
+              }
+
+              @Override
+              public void onBackPressed() {
+                  if (webView.canGoBack()) {
+                      webView.goBack();
+                  } else {
+                      super.onBackPressed();
+                  }
+              }
+          }
+          EOF
+
+          cat > app/src/main/assets/home.html <<'EOF'
+          <!DOCTYPE html>
+          <html lang="fa" dir="rtl">
+          <head>
+          <meta charset="UTF-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1">
+          <meta name="theme-color" content="#071b35">
+          <title>AI Wastewater OS</title>
+          <style>
+          *{box-sizing:border-box}
+          body{
+            margin:0;min-height:100vh;display:flex;align-items:center;
+            justify-content:center;padding:24px;
+            font-family:Tahoma,Arial,sans-serif;color:#fff;
+            background:radial-gradient(circle at top,#164e78,#071b35 65%);
+          }
+          .container{width:100%;max-width:440px;text-align:center}
+          .logo{font-size:65px;margin-bottom:8px}
+          h1{font-size:25px;margin:8px 0}
+          .sub{color:#b9d6e9;font-size:13px;margin-bottom:34px}
+          .card{
+            display:block;text-decoration:none;color:white;text-align:right;
+            padding:22px;margin:16px 0;border-radius:22px;
+            background:rgba(255,255,255,.11);
+            border:1px solid rgba(255,255,255,.23);
+            box-shadow:0 12px 30px rgba(0,0,0,.2);
+            backdrop-filter:blur(15px);
+          }
+          .card strong{font-size:18px;display:block;margin-bottom:9px}
+          .card span{font-size:13px;color:#c5dced}
+          .symbol{font-size:30px;float:left}
+          footer{font-size:11px;color:#91b5ce;margin-top:35px}
+          </style>
+          </head>
+          <body>
+          <main class="container">
+            <div class="logo">💧</div>
+            <h1>AI Wastewater OS</h1>
+            <div class="sub">سامانه هوشمند مدیریت بهره‌برداری فاضلاب مرودشت</div>
+
+            <a class="card" href="index.html">
+              <div class="symbol">🏭</div>
+              <strong>داشبورد تصفیه‌خانه فاضلاب</strong>
+              <span>مدیریت فرآیند، کیفیت پساب، تجهیزات و عملکرد تصفیه‌خانه</span>
+            </a>
+
+            <a class="card" href="network.html">
+              <div class="symbol">🌐</div>
+              <strong>داشبورد شبکه جمع‌آوری فاضلاب</strong>
+              <span>مدیریت شبکه، حوادث، تعمیرات، شست‌وشو و عملیات بهره‌برداری</span>
+            </a>
+
+            <footer>AI WASTEWATER OS · MARVDASHT</footer>
+          </main>
+          </body>
+          </html>
+          EOF
+
+          test -s app/src/main/assets/index.html
+          test -s app/src/main/assets/network.html
+
+      - name: Build APK
+        run: gradle assembleDebug
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: AI-Wastewater-OS-APK
+          path: app/build/outputs/apk/debug/app-debug.apk
+          if-no-files-found: error
