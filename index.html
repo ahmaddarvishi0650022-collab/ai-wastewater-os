@@ -1,803 +1,216 @@
-
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#092b46">
-<title>AI Wastewater OS | تصفیه‌خانه مرودشت</title>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0b5cab"><meta name="description" content="سامانه هوشمند مدیریت بهره‌برداری تصفیه‌خانه فاضلاب مرودشت"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="apple-mobile-web-app-title" content="AI Wastewater OS"><link rel="manifest" href="manifest.webmanifest"><link rel="icon" href="icons/icon-192.png" type="image/png"><link rel="apple-touch-icon" href="icons/icon-192.png"><title>AI Wastewater OS 7.2 | تصفیه‌خانه مرودشت</title>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800&display=swap');
+:root{--blue:#1266ad;--blue2:#eaf4ff;--navy:#12314d;--bg:#f3f6fa;--card:#fff;--text:#1c2b39;--muted:#718096;--line:#e4ebf2;--green:#16845b;--greenbg:#e8f7f0;--orange:#c77a12;--orangebg:#fff4df;--red:#c44343;--redbg:#fff0f0;--shadow:0 5px 22px #183b5b0b}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:'B Nazanin','BNazanin','B Nazanin','Nazanin',Tahoma,sans-serif;font-size:16px}button,input,select,textarea{font:inherit}.page-head h2,.panel-head h3,.modal-head h3,.topbar h1,.brand b{font-family:'B Titr','BTitr','B Titr','B Nazanin',Tahoma,sans-serif}.page-head h2{font-size:22px}.panel-head h3{font-size:16px}button{cursor:pointer}.app{display:flex;min-height:100vh}.sidebar{width:255px;background:#102c45;color:#eaf3fb;position:fixed;right:0;top:0;bottom:0;padding:22px 14px;overflow:auto;z-index:5}.brand{display:flex;align-items:center;gap:11px;padding:4px 8px 22px;border-bottom:1px solid #ffffff1c}.brand-logo{width:43px;height:43px;border-radius:13px;background:linear-gradient(135deg,#3da5f4,#1266ad);display:grid;place-items:center;font-size:23px}.brand b{font-size:15px;display:block}.brand small{color:#9eb6ca}.nav-label{font-size:11px;color:#87a4bb;margin:20px 10px 8px}.nav button{width:100%;border:0;background:transparent;color:#d2e1ed;text-align:right;padding:11px 12px;border-radius:9px;margin:2px 0;display:flex;align-items:center;gap:11px}.nav button:hover,.nav button.active{background:#ffffff18;color:#fff}.nav .ico{width:20px;text-align:center;font-size:16px}.side-note{font-size:11px;line-height:1.9;color:#9eb6ca;background:#ffffff0c;border:1px solid #ffffff16;border-radius:10px;padding:11px;margin-top:25px}.main{margin-right:255px;width:calc(100% - 255px);min-width:0}.topbar{height:70px;background:#fff;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 28px;position:sticky;top:0;z-index:4}.topbar h1{font-size:17px;margin:0}.topbar small{color:var(--muted)}.top-actions{display:flex;gap:8px;align-items:center}.content{padding:25px 28px;max-width:1600px;margin:auto}.page{display:none}.page.active{display:block}.page-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:20px}.page-head h2{margin:0 0 5px;font-size:21px}.page-head p{margin:0;color:var(--muted);font-size:12px}.btn{border:1px solid var(--line);background:#fff;color:var(--text);padding:8px 13px;border-radius:8px;font-weight:600;font-size:12px}.btn.primary{background:var(--blue);border-color:var(--blue);color:#fff}.btn.danger{color:var(--red);border-color:#f0caca}.btn.small{padding:5px 9px;font-size:11px}.btn:hover{filter:brightness(.97)}.grid{display:grid;gap:14px}.kpis{grid-template-columns:repeat(4,minmax(0,1fr));margin-bottom:16px}.kpi,.panel{background:var(--card);border:1px solid var(--line);border-radius:13px;box-shadow:var(--shadow)}.kpi{padding:15px 16px;min-width:0}.kpi-top{display:flex;justify-content:space-between;align-items:center;color:var(--muted);font-size:12px}.kpi-icon{width:30px;height:30px;border-radius:9px;background:var(--blue2);display:grid;place-items:center;color:var(--blue);font-size:16px}.kpi-value{font-size:23px;font-weight:800;margin:10px 0 2px;direction:ltr;text-align:right;overflow-wrap:anywhere}.kpi-foot{font-size:10px;color:var(--muted);line-height:1.7}.two-col{grid-template-columns:1.35fr 1fr}.three-col{grid-template-columns:repeat(3,minmax(0,1fr))}.panel{padding:17px;margin-bottom:15px;min-width:0}.panel-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:14px}.panel-head h3{font-size:14px;margin:0}.muted{color:var(--muted)}.tiny{font-size:11px}.status{display:inline-flex;padding:3px 8px;border-radius:20px;font-size:10px;font-weight:600;background:#edf1f5;color:#536273}.status.good{background:var(--greenbg);color:var(--green)}.status.warn{background:var(--orangebg);color:var(--orange)}.status.bad{background:var(--redbg);color:var(--red)}.table-wrap{overflow:auto}table{width:100%;border-collapse:collapse;white-space:nowrap}th,td{padding:10px 9px;border-bottom:1px solid var(--line);text-align:right;font-size:12px}th{color:var(--muted);font-weight:600;background:#fafbfd}tr:last-child td{border-bottom:0}.empty{text-align:center;color:var(--muted);padding:25px}.form-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.field{display:flex;flex-direction:column;gap:5px;min-width:0}.field label{font-size:11px;color:#536273;font-weight:600}.field input,.field select,.field textarea,.toolbar input,.toolbar select{border:1px solid #dce5ee;border-radius:8px;padding:9px 10px;background:#fff;color:var(--text);outline:none;width:100%;min-width:0}.field input:focus,.field select:focus,.field textarea:focus{border-color:#73b4e8;box-shadow:0 0 0 3px #1683d51a}.field textarea{min-height:75px;resize:vertical}.field .hint{font-size:10px;color:var(--muted)}.toolbar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}.toolbar input{max-width:260px}.toolbar select{max-width:180px}.actions{display:flex;gap:5px}.metric-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.metric-card{border:1px solid var(--line);border-radius:10px;padding:11px;background:#fcfdff}.metric-card strong{font-size:12px}.metric-card .val{font-size:20px;font-weight:800;margin:6px 0;direction:ltr;text-align:right}.metric-card small{font-size:10px;color:var(--muted)}.chart{width:100%;height:250px;display:block}.legend{display:flex;gap:15px;flex-wrap:wrap;font-size:11px;color:var(--muted)}.dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-left:5px}.notice{padding:11px 13px;border-radius:9px;background:#eef6fd;color:#285b83;font-size:11px;line-height:1.9;border:1px solid #d9eafa;margin-bottom:14px}.notice.warn{background:#fff8e9;color:#8c6118;border-color:#f2e3bd}.notice.danger{background:#fff1f1;color:#9b3434;border-color:#f0d0d0}.tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}.tab{border:1px solid var(--line);background:#fff;border-radius:7px;padding:7px 11px;font-size:11px}.tab.active{background:var(--blue2);color:var(--blue);border-color:#b9dafa}.modal-back{position:fixed;inset:0;background:#10203080;z-index:20;display:none;align-items:center;justify-content:center;padding:15px}.modal-back.show{display:flex}.modal{background:#fff;border-radius:14px;width:min(850px,100%);max-height:92vh;overflow:auto;padding:20px;box-shadow:0 20px 70px #0003}.modal-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:15px}.modal-head h3{margin:0;font-size:16px}.close{border:0;background:#f0f3f6;border-radius:7px;width:30px;height:30px}.modal-foot{display:flex;justify-content:flex-end;gap:8px;margin-top:17px}.mobile-menu{display:none}.footer{text-align:center;color:#9aa8b6;font-size:10px;padding:20px}.pill{background:#edf4fa;color:#4d6b83;padding:4px 8px;border-radius:20px;font-size:10px}.module-card{padding:14px;border:1px solid var(--line);border-radius:10px;background:#fff}.module-card h4{margin:0 0 8px}.module-card p{margin:5px 0;color:var(--muted);font-size:11px}.progress{height:7px;background:#edf1f5;border-radius:10px;overflow:hidden}.progress span{display:block;height:100%;background:var(--blue);border-radius:10px}
+@media(max-width:1100px){.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.two-col{grid-template-columns:1fr}.three-col{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:760px){.sidebar{transform:translateX(100%);transition:.2s}.sidebar.open{transform:translateX(0)}.main{margin:0;width:100%}.topbar{padding:0 14px;height:62px}.content{padding:17px 13px}.mobile-menu{display:inline-flex}.topbar h1{font-size:14px}.topbar small{display:none}.kpis{gap:8px}.kpi{padding:11px}.kpi-value{font-size:19px}.form-grid,.metric-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.three-col{grid-template-columns:1fr}.page-head{align-items:center}.page-head h2{font-size:18px}}
+@media(max-width:390px){.form-grid,.metric-grid{grid-template-columns:1fr}.kpi-value{font-size:17px}}
 
-:root{
- --bg:#edf2f7;--panel:#fff;--navy:#092b46;--navy2:#103d5e;
- --blue:#1684c7;--cyan:#13b8c5;--green:#16a36a;
- --orange:#ed9b26;--red:#dc4c54;--purple:#8063c8;
- --text:#203347;--muted:#718397;--line:#e2eaf1;
- --shadow:0 8px 28px rgba(15,45,70,.07);
-}
-*{box-sizing:border-box}
-body{margin:0;background:var(--bg);font-family:'Vazirmatn',Tahoma,sans-serif;color:var(--text)}
-button,input,select,textarea{font-family:inherit}
-button{cursor:pointer}
-.app{display:flex;min-height:100vh}
-.sidebar{width:255px;background:linear-gradient(180deg,#08263f,#0c3858);color:white;padding:22px 15px;position:fixed;right:0;top:0;bottom:0;overflow:auto;z-index:10}
-.brand{display:flex;align-items:center;gap:12px;padding:8px 7px 22px;border-bottom:1px solid #ffffff20}
-.logo{width:45px;height:45px;border-radius:14px;background:linear-gradient(135deg,#16b8c6,#1684c7);display:grid;place-items:center;font-size:24px}
-.brand h2{font-size:15px;margin:0}
-.brand small{font-size:10px;color:#a8c5d8}
-.nav-title{font-size:10px;color:#8baabe;margin:22px 10px 8px}
-.nav{display:flex;align-items:center;gap:11px;width:100%;border:0;background:transparent;color:#c3d6e4;padding:12px;border-radius:10px;text-align:right;font-size:12px;margin:3px 0}
-.nav:hover,.nav.active{background:#ffffff17;color:white}
-.nav.active{border-right:3px solid var(--cyan)}
-.nav .ico{width:21px;text-align:center;font-size:16px}
-.sidebar-foot{margin-top:28px;padding:13px;border:1px solid #ffffff20;border-radius:12px;font-size:10px;color:#b7cfdf;line-height:2}
-.main{margin-right:255px;width:calc(100% - 255px);min-width:0}
-.topbar{height:72px;background:#fff;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 27px;position:sticky;top:0;z-index:5}
-.top-title{font-size:15px;font-weight:800}
-.top-sub{font-size:10px;color:var(--muted);margin-top:3px}
-.top-actions{display:flex;align-items:center;gap:9px}
-.avatar{width:36px;height:36px;border-radius:12px;background:#e5f5f7;color:#087f91;display:grid;place-items:center;font-weight:900}
-.content{padding:25px;max-width:1600px;margin:auto}
-.page{display:none}.page.active{display:block}
-.page-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:20px;flex-wrap:wrap}
-.page-head h1{font-size:20px;margin:0 0 5px}
-.page-head p{font-size:11px;color:var(--muted);margin:0}
-.btn{border:0;border-radius:9px;padding:10px 15px;font-size:11px;font-weight:700;background:var(--blue);color:#fff}
-.btn:hover{filter:brightness(.95)}
-.btn.secondary{background:#eaf2f8;color:#31536c}
-.btn.green{background:var(--green)}
-.btn.orange{background:var(--orange)}
-.btn.red{background:var(--red)}
-.btn.dark{background:var(--navy)}
-.btn.small{padding:7px 10px;font-size:10px}
-.grid{display:grid;gap:15px}
-.kpis{grid-template-columns:repeat(4,minmax(0,1fr));margin-bottom:17px}
-.card{background:var(--panel);border:1px solid var(--line);border-radius:15px;padding:17px;box-shadow:var(--shadow);min-width:0}
-.kpi{position:relative;overflow:hidden}
-.kpi:after{content:"";position:absolute;left:-18px;bottom:-25px;width:80px;height:80px;border-radius:50%;background:var(--tint)}
-.kpi-top{display:flex;justify-content:space-between;align-items:center}
-.kpi-icon{width:36px;height:36px;border-radius:11px;display:grid;place-items:center;font-size:17px;background:var(--tint)}
-.kpi-label{font-size:11px;color:var(--muted)}
-.kpi-value{font-size:27px;font-weight:900;margin-top:10px;color:var(--text)}
-.kpi-note{font-size:10px;color:var(--muted);margin-top:3px}
-.two{grid-template-columns:1.3fr 1fr}
-.three{grid-template-columns:repeat(3,minmax(0,1fr))}
-.section-title{font-size:13px;font-weight:800;margin:0 0 14px}
-.muted{color:var(--muted)}
-.small-text{font-size:10px;color:var(--muted)}
-.unit-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
-.unit-card{border:1px solid var(--line);border-radius:12px;padding:14px;background:#fff}
-.unit-card h3{font-size:12px;margin:0 0 8px}
-.unit-card p{font-size:10px;color:var(--muted);line-height:1.9;margin:0}
-.unit-card .unit-foot{display:flex;justify-content:space-between;align-items:center;margin-top:12px}
-.badge{display:inline-flex;align-items:center;padding:4px 8px;border-radius:20px;font-size:9px;font-weight:700;background:#eaf2f8;color:#45627a}
-.badge.green{background:#e5f7ee;color:#128052}
-.badge.orange{background:#fff2dd;color:#a86a0b}
-.badge.red{background:#ffebed;color:#b82f3a}
-.badge.blue{background:#e5f3ff;color:#176da5}
-.badge.purple{background:#f0eaff;color:#7051b4}
-.progress{height:8px;border-radius:10px;background:#edf1f5;overflow:hidden}
-.progress span{height:100%;display:block;border-radius:10px;background:linear-gradient(90deg,var(--cyan),var(--blue))}
-.table-wrap{overflow-x:auto}
-table{width:100%;border-collapse:collapse;min-width:650px}
-th,td{padding:11px 10px;text-align:right;border-bottom:1px solid var(--line);font-size:10px;vertical-align:middle}
-th{color:var(--muted);font-weight:700;background:#f8fafc;white-space:nowrap}
-td{color:#34495d}
-tr:last-child td{border-bottom:0}
-.actions{display:flex;gap:5px;flex-wrap:wrap}
-.form-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px}
-.field{display:flex;flex-direction:column;gap:6px;min-width:0}
-.field label{font-size:10px;color:#53697d;font-weight:700}
-.field input,.field select,.field textarea{width:100%;border:1px solid #dce5ed;border-radius:8px;padding:10px;background:#fff;color:var(--text);font-size:11px;outline:none}
-.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--blue);box-shadow:0 0 0 3px #1684c71a}
-.field textarea{min-height:80px;resize:vertical}
-.field.full{grid-column:1/-1}
-.field.half{grid-column:span 2}
-.form-section{margin:20px 0 12px;padding-bottom:9px;border-bottom:1px solid var(--line);font-size:12px;font-weight:800;color:var(--navy)}
-.form-actions{display:flex;gap:8px;margin-top:18px;flex-wrap:wrap}
-.checkbox-line{display:flex;gap:9px;align-items:center;font-size:10px;padding:8px 0}
-.checkbox-line input{accent-color:var(--blue)}
-.search-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
-.search-row input,.search-row select{border:1px solid var(--line);background:white;border-radius:8px;padding:9px;font:inherit;font-size:10px}
-.empty{text-align:center;padding:35px;color:var(--muted);font-size:11px}
-.chart-bars{display:flex;align-items:end;gap:12px;height:150px;padding:10px 4px 0}
-.bar-col{flex:1;display:flex;flex-direction:column;align-items:center;gap:7px;height:100%;justify-content:end}
-.bar{width:70%;max-width:38px;border-radius:7px 7px 2px 2px;background:linear-gradient(180deg,#18b9c5,#1684c7);min-height:3px}
-.bar-label{font-size:9px;color:var(--muted)}
-.bar-val{font-size:9px;font-weight:800}
-.timeline{border-right:2px solid #d9e7ef;margin-right:7px;padding-right:17px}
-.timeline-item{position:relative;padding:0 0 17px}
-.timeline-item:before{content:"";position:absolute;right:-23px;top:3px;width:9px;height:9px;border-radius:50%;background:var(--blue);border:3px solid #e3f3fb}
-.timeline-item b{font-size:11px}.timeline-item p{font-size:10px;color:var(--muted);margin:4px 0}
-.notice{background:#edf8fb;border:1px solid #cdebf0;border-radius:11px;padding:12px;font-size:10px;color:#28647a;line-height:2;margin-bottom:15px}
-.danger-note{background:#fff4e5;border:1px solid #f5dfb9;color:#895a15}
-.module-card{border-radius:14px;padding:16px;border:1px solid var(--line);background:white}
-.module-card h3{font-size:14px;margin:0 0 7px}
-.module-stat{display:flex;justify-content:space-between;font-size:10px;margin:9px 0}
-.modal-bg{display:none;position:fixed;inset:0;background:#061b2dcc;z-index:30;align-items:center;justify-content:center;padding:15px}
-.modal-bg.show{display:flex}
-.modal{background:#fff;width:min(850px,100%);max-height:92vh;overflow:auto;border-radius:16px;padding:20px}
-.modal-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:15px}
-.modal-head h2{font-size:15px;margin:0}
-.close{border:0;background:#edf2f7;border-radius:8px;padding:7px 11px}
-.toast{position:fixed;bottom:22px;left:22px;background:#123b56;color:white;padding:12px 18px;border-radius:10px;font-size:11px;box-shadow:var(--shadow);z-index:50;display:none}
-.mobile-menu{display:none}
-.footer{text-align:center;font-size:9px;color:#9aa9b7;padding:20px}
-@media(max-width:1100px){.kpis{grid-template-columns:repeat(2,1fr)}.unit-grid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:760px){
- .sidebar{transform:translateX(100%);transition:.25s;width:270px}
- .sidebar.open{transform:translateX(0)}
- .main{margin:0;width:100%}
- .topbar{padding:0 14px;height:62px}
- .mobile-menu{display:block;border:0;background:#eaf2f8;padding:8px 10px;border-radius:8px}
- .content{padding:15px}
- .kpis{gap:9px}.card{padding:13px}
- .kpi-value{font-size:22px}
- .two,.three,.unit-grid{grid-template-columns:1fr}
- .form-grid{grid-template-columns:1fr 1fr}
- .field.half{grid-column:span 2}
- .page-head h1{font-size:17px}
-}
-@media(max-width:430px){.form-grid{grid-template-columns:1fr}.field.half{grid-column:span 1}.kpis{grid-template-columns:1fr 1fr}}
-@media print{
- .sidebar,.topbar,.no-print,.form-actions{display:none!important}
- .main{margin:0;width:100%}.content{padding:0}
- body{background:white}
- .card{box-shadow:none;break-inside:avoid}
-}
-</style>
-</head>
-<body>
-<div class="app">
-<aside class="sidebar" id="sidebar">
- <div class="brand">
-  <div class="logo">💧</div>
-  <div><h2>AI WASTEWATER OS</h2><small>سامانه هوشمند بهره‌برداری</small></div>
- </div>
- <div class="nav-title">مدیریت و پایش</div>
- <button class="nav active" data-page="dashboard"><span class="ico">▦</span>داشبورد مدیریتی</button>
- <button class="nav" data-page="process"><span class="ico">⚙</span>واحدهای فرایندی</button>
- <button class="nav" data-page="modules"><span class="ico">♻</span>مدیریت مدول‌های بیولوژیک</button>
- <div class="nav-title">نگهداری و تعمیرات</div>
- <button class="nav" data-page="equipment"><span class="ico">🔧</span>بانک تجهیزات</button>
- <button class="nav" data-page="pm"><span class="ico">📋</span>دستورکار PM</button>
- <button class="nav" data-page="faults"><span class="ico">🚨</span>خرابی‌ها و CM</button>
- <button class="nav" data-page="reports"><span class="ico">📝</span>گزارش‌های روزانه</button>
- <div class="nav-title">گزارش‌گیری و تنظیمات</div>
- <button class="nav" data-page="analytics"><span class="ico">📊</span>تحلیل عملکرد</button>
- <button class="nav" data-page="backup"><span class="ico">💾</span>پشتیبان‌گیری و اطلاعات</button>
- <div class="sidebar-foot">
-  <b>شرکت آب و فاضلاب استان فارس</b><br>
-  تصفیه‌خانه فاضلاب شهر مرودشت<br>
-  نسخه آزمایشی ۶.۰<br>
-  <span id="lastSave">ذخیره‌سازی محلی فعال</span>
- </div>
-</aside>
+/* ===== Visual refresh 7.1: glass, gradients, luminous icons ===== */
+:root{--shadow:0 12px 34px rgba(20,55,90,.075)}
+body{background:radial-gradient(ellipse at 8% 0%,#e6f4ff 0,transparent 34%),radial-gradient(ellipse at 95% 18%,#e9f8f4 0,transparent 30%),#f4f7fb}
+.brand-logo{position:relative;overflow:visible;background:linear-gradient(145deg,#71e4d0,#2d91e8 48%,#6858d9);box-shadow:0 0 0 4px #ffffff12,0 8px 24px #20a7d477;animation:logoPulse 2.8s ease-in-out infinite}
+.brand-logo:before{content:"";position:absolute;inset:-5px;border:1px solid #7de6ff88;border-radius:16px;animation:logoHalo 2.8s ease-out infinite}
+@keyframes logoPulse{0%,100%{transform:translateY(0) scale(1);filter:brightness(1)}50%{transform:translateY(-2px) scale(1.055);filter:brightness(1.2)}}
+@keyframes logoHalo{0%{transform:scale(.92);opacity:.8}100%{transform:scale(1.55);opacity:0}}
+.dash-hero{position:relative;isolation:isolate;overflow:hidden;min-height:196px;margin:0 0 18px;padding:25px 28px;border-radius:22px;color:#fff;background:linear-gradient(112deg,#102e50 0%,#155e91 48%,#167e91 100%);box-shadow:0 18px 40px #164d7430}
+.dash-hero:before,.dash-hero:after{content:"";position:absolute;z-index:-1;border-radius:50%;pointer-events:none}
+.dash-hero:before{width:290px;height:290px;left:9%;top:-165px;background:radial-gradient(circle,#64e8d477 0,transparent 68%);filter:blur(3px)}
+.dash-hero:after{width:240px;height:240px;right:34%;bottom:-185px;background:radial-gradient(circle,#77baff66 0,transparent 70%)}
+.hero-orbit{position:absolute;left:7%;top:18px;width:190px;height:155px;border:1px solid #ffffff26;border-radius:50%;transform:rotate(-24deg);pointer-events:none}
+.hero-orbit:before,.hero-orbit:after{content:"";position:absolute;border:1px solid #ffffff22;border-radius:50%;inset:17px -16px;transform:rotate(48deg)}
+.hero-orbit:after{inset:35px -30px;transform:rotate(-65deg)}
+.hero-content{position:relative;z-index:1;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.hero-copy{max-width:660px}.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;padding:6px 11px;border:1px solid #ffffff35;background:#ffffff12;border-radius:30px;font-size:11px;color:#d7f5ff;backdrop-filter:blur(10px)}
+.hero-led{width:8px;height:8px;border-radius:50%;background:#72f5c6;box-shadow:0 0 0 4px #72f5c622,0 0 14px #72f5c6;animation:ledBlink 1.7s ease-in-out infinite}
+@keyframes ledBlink{50%{opacity:.45;box-shadow:0 0 0 7px #72f5c611,0 0 4px #72f5c6}}
+.hero-copy h2{font-size:25px;line-height:1.6;margin:13px 0 4px;color:#fff}.hero-copy p{font-size:12px;line-height:2;color:#d4eaf5;margin:0;max-width:590px}
+.hero-logo-wrap{width:128px;height:128px;flex:0 0 128px;display:grid;place-items:center;position:relative;border-radius:35px;background:linear-gradient(145deg,#ffffff28,#ffffff08);border:1px solid #ffffff4d;box-shadow:inset 0 1px 0 #ffffff50,0 16px 35px #001d3c44;backdrop-filter:blur(12px);animation:heroFloat 4s ease-in-out infinite}
+.hero-logo-wrap:before{content:"";position:absolute;inset:-9px;border:1px solid #9ceeff55;border-radius:42px;animation:logoHalo 3.2s ease-out infinite}
+.hero-logo-wrap svg{width:82px;height:82px;filter:drop-shadow(0 8px 14px #001b3855)}
+@keyframes heroFloat{50%{transform:translateY(-6px) rotate(2deg)}}
+.hero-bottom{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px}.hero-chip{display:inline-flex;align-items:center;gap:6px;padding:7px 10px;border-radius:9px;background:#ffffff13;border:1px solid #ffffff22;color:#e7f7ff;font-size:10px}
+.kpi{position:relative;overflow:hidden;border:1px solid #e4edf5;border-radius:16px;box-shadow:0 8px 24px #183e5d0b;transition:transform .22s ease,box-shadow .22s ease}
+.kpi:hover{transform:translateY(-4px);box-shadow:0 15px 28px #183e5d16}
+.kpi:after{content:"";position:absolute;top:0;right:0;left:0;height:3px;background:var(--kpi-accent,#4a9ed8)}
+.kpi:nth-child(4n+1){--kpi-accent:#258bd5;background:linear-gradient(145deg,#fff,#f0f8ff)}
+.kpi:nth-child(4n+2){--kpi-accent:#16a88b;background:linear-gradient(145deg,#fff,#effbf7)}
+.kpi:nth-child(4n+3){--kpi-accent:#8a65d7;background:linear-gradient(145deg,#fff,#f7f3ff)}
+.kpi:nth-child(4n){--kpi-accent:#e59a36;background:linear-gradient(145deg,#fff,#fff8ee)}
+.kpi-icon{width:39px;height:39px;border-radius:13px;background:linear-gradient(145deg,#ffffff,#e9f2fb);box-shadow:inset 0 1px 2px #fff,0 5px 12px #254d6d16;display:grid;place-items:center;color:var(--kpi-accent);font-size:0}
+.kpi-icon svg{width:23px;height:23px;filter:drop-shadow(0 2px 2px #183e5d18)}
+.panel{border-radius:17px;border:1px solid #e5edf4;box-shadow:0 9px 26px #173d5c0b;background:linear-gradient(145deg,#ffffff,#fcfdff)}
+.panel-head h3{display:flex;align-items:center;gap:8px}.panel-head h3:before{content:"";display:inline-block;width:5px;height:17px;border-radius:8px;background:linear-gradient(#39a9df,#4cc6ad)}
+.metric-card,.module-card{border-radius:13px;background:linear-gradient(145deg,#fff,#f7faff);border-color:#e5edf5;transition:transform .2s ease,box-shadow .2s ease}
+.metric-card:hover,.module-card:hover{transform:translateY(-2px);box-shadow:0 8px 18px #173d5c10}
+.chart{filter:drop-shadow(0 4px 5px #1a5d8a12)}
+@media(max-width:760px){.dash-hero{padding:21px 17px;min-height:0;border-radius:18px}.hero-content{gap:8px}.hero-copy h2{font-size:19px}.hero-copy p{font-size:11px}.hero-logo-wrap{width:78px;height:78px;flex-basis:78px;border-radius:23px}.hero-logo-wrap svg{width:54px;height:54px}.hero-orbit{left:-8%;opacity:.6}.hero-bottom{margin-top:12px}.kpi{border-radius:13px}}
+@media(prefers-reduced-motion:reduce){.brand-logo,.brand-logo:before,.hero-led,.hero-logo-wrap,.hero-logo-wrap:before{animation:none!important;transition:none!important}}
 
-<main class="main">
-<header class="topbar">
- <div style="display:flex;align-items:center;gap:12px">
-  <button class="mobile-menu" onclick="document.getElementById('sidebar').classList.toggle('open')">☰</button>
-  <div><div class="top-title" id="topTitle">داشبورد مدیریتی</div><div class="top-sub">سامانه مدیریت بهره‌برداری و نگهداری تصفیه‌خانه مرودشت</div></div>
- </div>
- <div class="top-actions">
-  <span class="small-text" id="today"></span>
-  <div class="avatar">AD</div>
- </div>
-</header>
 
+/* ===== Visual identity 7.2: Persian typography, metric glass cards, evidence gallery ===== */
+body{font-family:'B Nazanin','BNazanin','Nazanin',Tahoma,sans-serif;font-size:17px;letter-spacing:0}
+button,input,select,textarea{font-family:'B Nazanin','BNazanin','Nazanin',Tahoma,sans-serif;font-size:16px}
+.page-head h2,.panel-head h3,.modal-head h3,.topbar h1,.brand b{font-family:'B Titr','BTitr','B Titr','B Nazanin',Tahoma,sans-serif;letter-spacing:0}
+.hero-owner{display:flex;align-items:center;gap:10px;margin:-2px 0 9px;font-size:19px;font-weight:800;color:#fff}.hero-owner span{font-size:14px;font-weight:500;color:#c6e9ff;border-right:1px solid #ffffff55;padding-right:10px}
+.kpi,.panel,.module-card,.metric-card{backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border:1px solid rgba(255,255,255,.78);box-shadow:0 12px 32px rgba(23,58,91,.09),inset 0 1px 0 rgba(255,255,255,.75)}
+.kpi{background:linear-gradient(145deg,rgba(255,255,255,.96),rgba(237,247,255,.86));border-radius:18px;transition:transform .22s,box-shadow .22s}.kpi:hover{transform:translateY(-4px);box-shadow:0 18px 38px rgba(23,58,91,.15)}
+.panel{background:linear-gradient(145deg,rgba(255,255,255,.94),rgba(246,250,255,.86));border-radius:20px}
+.metric-card.metric-glass{position:relative;overflow:hidden;min-height:112px;border-radius:16px;background:linear-gradient(135deg,rgba(255,255,255,.96),rgba(239,247,255,.78));box-shadow:0 9px 24px rgba(35,72,108,.09),inset 0 1px 0 #fff;transition:transform .2s,box-shadow .2s}
+.metric-card.metric-glass:after{content:"";position:absolute;width:88px;height:88px;left:-28px;bottom:-38px;border-radius:50%;background:radial-gradient(circle,#72c8ff40,transparent 70%);pointer-events:none}
+.metric-card.metric-glass:hover{transform:translateY(-3px);box-shadow:0 15px 30px rgba(35,72,108,.14)}
+.metric-card-head{display:flex;align-items:center;gap:9px}.metric-card-head strong{font-size:15px}.metric-symbol{width:38px;height:38px;flex:0 0 38px;display:grid;place-items:center;border-radius:13px;color:#fff;background:linear-gradient(145deg,#49b6e8,#536bdc);box-shadow:0 5px 13px #438bd54d}.metric-symbol svg{width:23px;height:23px;filter:drop-shadow(0 1px 2px #1234)}
+.metric-card:nth-child(3n+2) .metric-symbol{background:linear-gradient(145deg,#38c9b0,#168c83)}.metric-card:nth-child(3n) .metric-symbol{background:linear-gradient(145deg,#bd8af4,#8061ce)}
+.metric-card .val{font-size:23px;margin:5px 0 1px}.metric-card small{font-size:12px}
+.photo-upload-box{padding:15px;border:1px dashed #83b9df;border-radius:16px;background:linear-gradient(135deg,#eff8ff,#f4f2ff)}.photo-drop{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px;min-height:145px;text-align:center;cursor:pointer;color:#285b83}.photo-drop small{color:#6e8296;font-size:13px}.photo-upload-icon{font-size:34px;color:#378fd0}.photo-preview-grid,.saved-photo-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(125px,1fr));gap:10px;margin-top:12px}.photo-pending{padding:9px;background:#fff;border:1px solid #dce8f2;border-radius:10px;font-size:12px;overflow-wrap:anywhere}.photo-pending span{color:#2686c6;margin-left:5px}.saved-photo-grid figure{margin:0;padding:7px;background:#fff;border:1px solid #e1eaf2;border-radius:12px;box-shadow:0 5px 15px #24415c12}.saved-photo-grid img{width:100%;height:115px;object-fit:cover;border-radius:8px;cursor:zoom-in}.saved-photo-grid figcaption{font-size:12px;padding:5px 2px;overflow-wrap:anywhere}.photo-large{display:block;max-width:100%;max-height:70vh;margin:auto;border-radius:12px;object-fit:contain}.photo-upload-box .hint{font-size:12px;color:#718096;margin:10px 0 0}
+@media(max-width:760px){.hero-owner{font-size:17px;flex-wrap:wrap}.hero-owner span{font-size:13px}.metric-card-head strong{font-size:14px}}
+
+</style></head>
+<body><div class="app">
+<aside class="sidebar" id="sidebar"><div class="brand"><div class="brand-logo"><svg viewBox="0 0 48 48" width="29" height="29" fill="none" aria-label="AI Wastewater"><path d="M24 5 39 14v18L24 41 9 32V14L24 5Z" stroke="white" stroke-width="2.2"/><path d="M16 21c2-5 8-7 13-4l3 2m0 0-1-5m1 5-5 1M32 27c-2 5-8 7-13 4l-3-2m0 0 1 5m-1-5 5-1" stroke="white" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/><circle cx="24" cy="24" r="3" fill="#b8fff0"/></svg></div><div><b>AI Wastewater OS</b><small>نسخه ۷.۱ | مرودشت</small></div></div>
+<div class="nav-label">مدیریت و پایش</div><nav class="nav">
+<button class="active" data-page="dashboard"><span class="ico">▦</span>داشبورد هوشمند</button>
+<button data-page="reports"><span class="ico">✚</span>ثبت داده‌های بهره‌برداری</button>
+<button data-page="analytics"><span class="ico">▥</span>تحلیل و روندها</button>
+<button data-page="process"><span class="ico">⚙</span>واحدهای فرایندی</button>
+<button data-page="modules"><span class="ico">▣</span>مدیریت مدول‌ها</button>
+<div class="nav-label">نگهداری و تعمیرات</div>
+<button data-page="equipment"><span class="ico">🔧</span>بانک تجهیزات</button>
+<button data-page="pm"><span class="ico">◷</span>نگهداری پیشگیرانه PM</button>
+<button data-page="faults"><span class="ico">⚠</span>خرابی‌ها و تعمیرات CM</button>
+<div class="nav-label">مدیریت اطلاعات</div>
+<button data-page="backup"><span class="ico">⇧</span>پشتیبان‌گیری و خروجی</button>
+</nav><div class="side-note">اطلاعات این سامانه به‌صورت دستی توسط کاربر ثبت می‌شود. اتصال واقعی به PLC یا SCADA در این نسخه پیاده‌سازی نشده است. مقادیر اولیه تجهیزات و مدول‌ها نیازمند تطبیق با وضعیت واقعی تصفیه‌خانه هستند.</div></aside>
+<main class="main"><header class="topbar"><div style="display:flex;align-items:center;gap:10px"><button class="btn mobile-menu" id="menuBtn">☰</button><div><h1 id="topTitle">داشبورد هوشمند تصفیه‌خانه</h1><small>احمد درویشی · رئیس قسمت بهره‌برداری فاضلاب | سامانه مدیریت بهره‌برداری و پایش تصفیه‌خانه</small></div></div><div class="top-actions"><span class="pill" id="todayLabel"></span><button class="btn primary" id="installAppBtn" type="button" hidden>⬇ نصب برنامه</button><button class="btn" onclick="navigate('reports')">＋ ثبت گزارش</button></div></header>
 <div class="content">
-
-<!-- DASHBOARD -->
-<section class="page active" id="page-dashboard">
- <div class="page-head">
-  <div><h1>داشبورد مدیریتی تصفیه‌خانه</h1><p>نمای کلی وضعیت بهره‌برداری، تجهیزات و نگهداری و تعمیرات</p></div>
-  <button class="btn dark" onclick="window.print()">🖨 چاپ داشبورد</button>
- </div>
- <div class="grid kpis">
-  <div class="card kpi" style="--tint:#e4f4ff"><div class="kpi-top"><span class="kpi-label">کل تجهیزات ثبت‌شده</span><span class="kpi-icon">⚙</span></div><div class="kpi-value" id="kEquip">0</div><div class="kpi-note">بانک تجهیزات تصفیه‌خانه</div></div>
-  <div class="card kpi" style="--tint:#e4f8ed"><div class="kpi-top"><span class="kpi-label">تجهیزات سالم</span><span class="kpi-icon">✓</span></div><div class="kpi-value" id="kHealthy">0</div><div class="kpi-note">بر اساس آخرین وضعیت ثبت‌شده</div></div>
-  <div class="card kpi" style="--tint:#fff0df"><div class="kpi-top"><span class="kpi-label">دستورکارهای باز</span><span class="kpi-icon">📋</span></div><div class="kpi-value" id="kPM">0</div><div class="kpi-note">در انتظار اجرا یا تأیید</div></div>
-  <div class="card kpi" style="--tint:#ffeaec"><div class="kpi-top"><span class="kpi-label">خرابی‌های باز</span><span class="kpi-icon">⚠</span></div><div class="kpi-value" id="kFault">0</div><div class="kpi-note">نیازمند پیگیری تعمیراتی</div></div>
- </div>
- <div class="grid two">
-  <div class="card">
-   <h3 class="section-title">وضعیت تجهیزات به تفکیک شرایط</h3>
-   <div id="equipmentStatus"></div>
-  </div>
-  <div class="card">
-   <h3 class="section-title">وضعیت مدول‌های بیولوژیک</h3>
-   <div id="moduleOverview"></div>
-  </div>
- </div>
- <div class="grid two" style="margin-top:15px">
-  <div class="card">
-   <h3 class="section-title">آخرین فعالیت‌های ثبت‌شده</h3>
-   <div id="recentActivity" class="timeline"></div>
-  </div>
-  <div class="card">
-   <h3 class="section-title">خلاصه نگهداری و تعمیرات</h3>
-   <div id="pmOverview"></div>
-  </div>
- </div>
- <div class="card" style="margin-top:15px">
-  <h3 class="section-title">واحدهای اصلی تصفیه‌خانه</h3>
-  <div class="grid unit-grid" id="dashboardUnits"></div>
- </div>
+<section class="page active" id="page-dashboard"><div class="page-head"><div><h2>داشبورد عملکرد تصفیه‌خانه</h2><p>نمایش آخرین داده معتبر ثبت‌شده برای هر شاخص؛ تاریخ اندازه‌گیری هر پارامتر مستقل است.</p></div><button class="btn primary" onclick="navigate('reports')">ثبت داده جدید</button></div>
+<div class="dash-hero"><div class="hero-orbit"></div><div class="hero-content"><div class="hero-copy"><span class="hero-eyebrow"><i class="hero-led"></i> سامانه هوشمند پایش و مدیریت بهره‌برداری</span><h2>AI Wastewater OS</h2><div class="hero-owner">احمد درویشی <span>رئیس قسمت بهره‌برداری فاضلاب</span></div><p>مرکز فرماندهی دیجیتال تصفیه‌خانه فاضلاب مرودشت؛ پایش شاخص‌های کمی و کیفی، تحلیل روندها و مدیریت نگهداری تجهیزات در یک نگاه.</p><div class="hero-bottom"><span class="hero-chip">✦ نسخه ۷.۲ · رابط کاربری و مستندات تصویری</span><span class="hero-chip">⌁ داده‌های بهره‌برداری</span><span class="hero-chip">◈ تحلیل و نگهداری</span></div></div><div class="hero-logo-wrap" aria-label="لوگوی متحرک AI Wastewater"><svg viewBox="0 0 100 100" fill="none"><defs><linearGradient id="waterGrad" x1="15" y1="10" x2="85" y2="90"><stop stop-color="#9DF8E0"/><stop offset=".52" stop-color="#72C9FF"/><stop offset="1" stop-color="#B7A4FF"/></linearGradient><linearGradient id="dropGrad" x1="30" y1="15" x2="70" y2="85"><stop stop-color="#fff"/><stop offset="1" stop-color="#7BE4D2"/></linearGradient></defs><path d="M50 7 86 28v44L50 93 14 72V28L50 7Z" stroke="url(#waterGrad)" stroke-width="2.5"/><path d="M50 19c-9 14-22 27-22 41a22 22 0 0 0 44 0c0-14-13-27-22-41Z" fill="url(#dropGrad)" fill-opacity=".2" stroke="url(#waterGrad)" stroke-width="3"/><path d="M34 57c7-7 15-7 22 0s13 7 19 1M35 67c7-6 13-6 19 0s12 6 17 1" stroke="white" stroke-width="3" stroke-linecap="round"/><circle cx="50" cy="39" r="4" fill="white"/><path d="m23 29 5 3m44 35 5 3" stroke="#fff" stroke-width="2" stroke-linecap="round" opacity=".8"/></svg></div></div></div>
+<div class="notice">📌 داده‌ها از گزارش‌های ثبت‌شده استخراج می‌شوند. اگر برای شاخصی داده‌ای وجود نداشته باشد، عبارت «ثبت نشده» نمایش داده می‌شود؛ مقدار خالی به‌عنوان صفر در نظر گرفته نمی‌شود.</div>
+<div class="grid kpis" id="dashboardKpis"></div>
+<div class="grid two-col"><div class="panel"><div class="panel-head"><h3>روند دبی ورودی و خروجی</h3><button class="btn small" onclick="navigate('analytics')">تحلیل کامل</button></div><div id="dashFlowChart"></div><div class="legend"><span><i class="dot" style="background:#1677c8"></i>دبی ورودی</span><span><i class="dot" style="background:#18a477"></i>دبی خروجی</span></div></div>
+<div class="panel"><div class="panel-head"><h3>وضعیت نگهداری و تعمیرات</h3><span class="status good">بر اساس داده ثبت‌شده</span></div><div class="grid three-col" id="maintenanceKpis"></div><div style="margin-top:16px"><div class="panel-head"><h3>آخرین فعالیت‌ها</h3></div><div id="recentActivities" class="tiny"></div></div></div></div>
+<div class="grid two-col"><div class="panel"><div class="panel-head"><h3>آخرین وضعیت پارامترهای کیفی</h3><span class="tiny muted">تاریخ مستقل هر پارامتر</span></div><div id="qualitySnapshot" class="metric-grid"></div></div><div class="panel"><div class="panel-head"><h3>وضعیت مدول‌ها</h3><button class="btn small" onclick="navigate('modules')">مدیریت مدول‌ها</button></div><div id="moduleSnapshot" class="grid"></div></div></div>
+<div class="panel"><div class="panel-head"><h3>واحدهای اصلی فرایندی</h3><button class="btn small" onclick="navigate('process')">مشاهده جزئیات</button></div><div class="grid three-col" id="processSnapshot"></div></div>
 </section>
-
-<!-- PROCESS -->
-<section class="page" id="page-process">
- <div class="page-head"><div><h1>واحدهای فرایندی تصفیه‌خانه</h1><p>ساختار فرایندی و تجهیزات اصلی هر بخش</p></div></div>
- <div class="notice">ساختار زیر بر اساس اطلاعات اولیه ارائه‌شده تنظیم شده است. تعدادها و مشخصات تجهیزاتی که هنوز تأیید نشده‌اند، در بانک تجهیزات قابل اصلاح هستند.</div>
- <div class="grid unit-grid" id="processUnits"></div>
+<section class="page" id="page-reports"><div class="page-head"><div><h2>ثبت داده‌های بهره‌برداری</h2><p>ثبت گزارش روزانه و زمان مستقل اندازه‌گیری برای هر پارامتر کمی و کیفی.</p></div></div>
+<div class="notice">برای هر پارامتر، تاریخ و ساعت اندازه‌گیری را جداگانه ثبت کنید. در صورت خالی بودن تاریخ/ساعت، زمان گزارش به‌عنوان زمان اندازه‌گیری ثبت می‌شود. واحدها را مطابق روش اندازه‌گیری آزمایشگاه و دستورالعمل بهره‌برداری وارد کنید.</div>
+<div class="panel"><div class="panel-head"><h3>اطلاعات عمومی گزارش</h3><span class="pill">ورود دستی اطلاعات</span></div><form id="reportForm"><div class="form-grid">
+<div class="field"><label>تاریخ گزارش</label><input type="date" name="date" id="reportDate" required></div><div class="field"><label>شیفت / نوبت</label><select name="shift"><option>روزکار</option><option>صبح</option><option>عصر</option><option>شب</option><option>۲۴ ساعته</option></select></div><div class="field"><label>نام ثبت‌کننده</label><input name="operator" placeholder="نام اپراتور"></div>
+</div><hr style="border:0;border-top:1px solid var(--line);margin:18px 0"><div class="panel-head"><h3>پارامترهای کمی و کیفی</h3><span class="tiny muted">مقدار + تاریخ + ساعت اندازه‌گیری</span></div><div class="form-grid" id="reportMetrics"></div>
+<hr style="border:0;border-top:1px solid var(--line);margin:18px 0"><div class="panel-head"><h3>وضعیت تجهیزات و مواد مصرفی</h3></div><div class="form-grid">
+<div class="field"><label>تعداد پمپ‌های در مدار</label><input type="number" min="0" name="pumps" step="1"></div><div class="field"><label>تعداد بلوئرهای در مدار</label><input type="number" min="0" name="blowers" step="1"></div><div class="field"><label>تعداد هواده‌های فعال</label><input type="number" min="0" name="aerators" step="1"></div><div class="field"><label>مصرف آب ژاول (لیتر)</label><input type="number" min="0" name="hypo" step="any"></div><div class="field"><label>مصرف پلیمر (کیلوگرم)</label><input type="number" min="0" name="polymer" step="any"></div><div class="field"><label>وضعیت کلی بهره‌برداری</label><select name="operation"><option>عادی</option><option>محدودیت بهره‌برداری</option><option>خارج از سرویس</option><option>نیازمند بررسی</option></select></div><div class="field" style="grid-column:1/-1"><label>توضیحات و رخدادهای شیفت</label><textarea name="notes" placeholder="توضیحات، تغییرات فرایندی، هشدارها و اقدامات انجام‌شده"></textarea></div>
+</div><hr style="border:0;border-top:1px solid var(--line);margin:18px 0"><div class="panel-head"><h3>مستندات تصویری گزارش و ارزیابی کشوری</h3><span class="pill">حداکثر ۶ تصویر برای هر گزارش</span></div><div class="photo-upload-box"><label for="reportPhotos" class="photo-drop"><span class="photo-upload-icon">▧</span><b>افزودن تصاویر مستند</b><small>عکس تجهیزات، واحدهای فرایندی، نمونه‌برداری، تعمیرات، ایمنی و اقدامات اصلاحی</small><span class="btn primary">انتخاب عکس</span></label><input id="reportPhotos" type="file" accept="image/*" multiple hidden><div id="reportPhotoPreview" class="photo-preview-grid"></div><p class="hint">تصاویر به‌صورت خودکار برای کاهش حجم فشرده می‌شوند و همراه همین گزارش در حافظه برنامه ذخیره خواهند شد.</p></div><div class="modal-foot"><button class="btn" type="reset">پاک‌کردن فرم</button><button class="btn primary" type="submit">ذخیره گزارش</button></div></form></div>
+<div class="panel"><div class="panel-head"><h3>سوابق گزارش‌های روزانه</h3><button class="btn small" onclick="exportReportsCSV()">خروجی CSV گزارش‌ها</button></div><div class="toolbar"><input id="reportSearch" placeholder="جست‌وجو در گزارش‌ها..."><select id="reportYearFilter"><option value="">همه تاریخ‌ها</option></select></div><div class="table-wrap"><table><thead><tr><th>تاریخ گزارش</th><th>شیفت</th><th>ثبت‌کننده</th><th>دبی ورودی</th><th>دبی خروجی</th><th>وضعیت</th><th>عملیات</th></tr></thead><tbody id="reportsTable"></tbody></table></div></div>
 </section>
-
-<!-- MODULES -->
-<section class="page" id="page-modules">
- <div class="page-head"><div><h1>مدیریت مدول‌های بیولوژیک</h1><p>پایش وضعیت مدار، جابه‌جایی شش‌ماهه و مدیریت لجن</p></div><button class="btn" onclick="openModuleForm()">＋ ثبت جابه‌جایی مدول</button></div>
- <div class="notice danger-note">فرض اولیه سامانه: از دو مدول، یک مدول در مدار بهره‌برداری و مدول دیگر خارج از مدار و در وضعیت آماده‌سازی/خشک‌شدن لجن است. این وضعیت را می‌توان در سامانه تغییر داد.</div>
- <div class="grid two" id="moduleCards"></div>
- <div class="card" style="margin-top:15px">
-  <h3 class="section-title">سوابق جابه‌جایی و گردش مدول‌ها</h3>
-  <div class="table-wrap"><table><thead><tr><th>تاریخ</th><th>مدول خارج‌شده</th><th>مدول وارد مدار</th><th>وضعیت لجن</th><th>توضیحات</th></tr></thead><tbody id="moduleHistory"></tbody></table></div>
- </div>
+<section class="page" id="page-analytics"><div class="page-head"><div><h2>تحلیل عملکرد و روندها</h2><p>روند شاخص‌ها بر مبنای زمان واقعی اندازه‌گیری؛ محاسبات فقط در صورت وجود داده کافی انجام می‌شود.</p></div><div class="toolbar"><select id="trendRange"><option value="7">۷ روز اخیر</option><option value="30" selected>۳۰ روز اخیر</option><option value="90">۹۰ روز اخیر</option><option value="all">همه داده‌ها</option></select></div></div>
+<div class="grid kpis" id="analysisKpis"></div><div class="grid two-col"><div class="panel"><div class="panel-head"><h3>روند دبی (m³/day)</h3></div><div id="flowChart"></div><div class="legend"><span><i class="dot" style="background:#1677c8"></i>ورودی</span><span><i class="dot" style="background:#18a477"></i>خروجی</span></div></div><div class="panel"><div class="panel-head"><h3>روند COD و BOD خروجی (mg/L)</h3></div><div id="organicChart"></div><div class="legend"><span><i class="dot" style="background:#9a62c7"></i>COD خروجی</span><span><i class="dot" style="background:#e39a35"></i>BOD₅ خروجی</span></div></div><div class="panel"><div class="panel-head"><h3>روند TSS خروجی (mg/L)</h3></div><div id="tssChart"></div></div><div class="panel"><div class="panel-head"><h3>شدت مصرف انرژی (kWh/m³)</h3></div><div id="energyChart"></div></div></div>
+<div class="panel"><div class="panel-head"><h3>شاخص‌های محاسباتی آخرین داده‌های معتبر</h3></div><div class="table-wrap"><table><thead><tr><th>شاخص</th><th>مقدار</th><th>روش محاسبه</th><th>محدودیت</th></tr></thead><tbody id="derivedTable"></tbody></table></div></div>
 </section>
-
-<!-- EQUIPMENT -->
-<section class="page" id="page-equipment">
- <div class="page-head"><div><h1>بانک اطلاعات تجهیزات</h1><p>شناسنامه تجهیزات، کدگذاری، وضعیت و اطلاعات نگهداری</p></div><button class="btn" onclick="openEquipmentForm()">＋ ثبت تجهیز جدید</button></div>
- <div class="card">
-  <div class="search-row">
-   <input id="equipSearch" placeholder="جست‌وجوی نام یا کد تجهیز..." oninput="renderEquipment()">
-   <select id="equipUnitFilter" onchange="renderEquipment()"><option value="">همه واحدها</option></select>
-   <select id="equipStatusFilter" onchange="renderEquipment()"><option value="">همه وضعیت‌ها</option><option>سالم</option><option>نیازمند بررسی</option><option>خراب</option><option>خارج از سرویس</option></select>
-  </div>
-  <div class="table-wrap"><table><thead><tr><th>کد تجهیز</th><th>نام تجهیز</th><th>واحد</th><th>نوع</th><th>وضعیت</th><th>تناوب PM</th><th>عملیات</th></tr></thead><tbody id="equipmentTable"></tbody></table></div>
- </div>
-</section>
-
-<!-- PM -->
-<section class="page" id="page-pm">
- <div class="page-head"><div><h1>دستورکار و گزارش کار PM</h1><p>مدیریت نت پیشگیرانه بر اساس ساختار فرم MIMS-003</p></div><button class="btn" onclick="openPMForm()">＋ صدور دستورکار PM</button></div>
- <div class="grid kpis">
-  <div class="card kpi" style="--tint:#e4f4ff"><div class="kpi-label">کل دستورکارها</div><div class="kpi-value" id="pmTotal">0</div></div>
-  <div class="card kpi" style="--tint:#e4f8ed"><div class="kpi-label">انجام‌شده</div><div class="kpi-value" id="pmDone">0</div></div>
-  <div class="card kpi" style="--tint:#fff0df"><div class="kpi-label">در حال انجام</div><div class="kpi-value" id="pmProgress">0</div></div>
-  <div class="card kpi" style="--tint:#ffeaec"><div class="kpi-label">باز / معوق</div><div class="kpi-value" id="pmOpen">0</div></div>
- </div>
- <div class="card">
-  <div class="search-row"><input id="pmSearch" placeholder="جست‌وجو در دستورکارها..." oninput="renderPM()"><select id="pmStatusFilter" onchange="renderPM()"><option value="">همه وضعیت‌ها</option><option>باز</option><option>در حال انجام</option><option>انجام‌شده</option><option>لغوشده</option></select></div>
-  <div class="table-wrap"><table><thead><tr><th>شماره دستورکار</th><th>تاریخ</th><th>تجهیز</th><th>فعالیت</th><th>نوع نت</th><th>اولویت</th><th>وضعیت</th><th>عملیات</th></tr></thead><tbody id="pmTable"></tbody></table></div>
- </div>
-</section>
-
-<!-- FAULTS -->
-<section class="page" id="page-faults">
- <div class="page-head"><div><h1>خرابی‌ها و درخواست تعمیرات CM</h1><p>ثبت نقص، اولویت‌بندی، اقدام اصلاحی و پیگیری رفع خرابی</p></div><button class="btn red" onclick="openFaultForm()">＋ ثبت خرابی جدید</button></div>
- <div class="card">
-  <div class="search-row"><input id="faultSearch" placeholder="جست‌وجوی خرابی..." oninput="renderFaults()"><select id="faultStatusFilter" onchange="renderFaults()"><option value="">همه وضعیت‌ها</option><option>باز</option><option>در حال تعمیر</option><option>رفع‌شده</option></select></div>
-  <div class="table-wrap"><table><thead><tr><th>شماره</th><th>تاریخ</th><th>تجهیز</th><th>شرح خرابی</th><th>اولویت</th><th>مسئول</th><th>وضعیت</th><th>عملیات</th></tr></thead><tbody id="faultTable"></tbody></table></div>
- </div>
-</section>
-
-<!-- REPORTS -->
-<section class="page" id="page-reports">
- <div class="page-head"><div><h1>گزارش‌های روزانه بهره‌برداری</h1><p>ثبت دبی، کیفیت پساب، وضعیت فرایند و ملاحظات روزانه</p></div><button class="btn" onclick="openReportForm()">＋ ثبت گزارش روزانه</button></div>
- <div class="card">
-  <div class="search-row"><input id="reportSearch" placeholder="جست‌وجو در گزارش‌ها..." oninput="renderReports()"></div>
-  <div class="table-wrap"><table><thead><tr><th>تاریخ</th><th>واحد</th><th>دبی ورودی</th><th>دبی خروجی</th><th>COD خروجی</th><th>DO</th><th>وضعیت</th><th>عملیات</th></tr></thead><tbody id="reportTable"></tbody></table></div>
- </div>
-</section>
-
-<!-- ANALYTICS -->
-<section class="page" id="page-analytics">
- <div class="page-head"><div><h1>تحلیل عملکرد و گزارش آماری</h1><p>شاخص‌های مدیریتی و روند فعالیت‌های نگهداری و تعمیرات</p></div><button class="btn dark" onclick="window.print()">🖨 چاپ گزارش</button></div>
- <div class="grid two">
-  <div class="card"><h3 class="section-title">تعداد دستورکارهای PM به تفکیک وضعیت</h3><div id="pmChart" class="chart-bars"></div></div>
-  <div class="card"><h3 class="section-title">خرابی‌ها به تفکیک وضعیت</h3><div id="faultChart" class="chart-bars"></div></div>
- </div>
- <div class="card" style="margin-top:15px">
-  <h3 class="section-title">شاخص‌های کلیدی عملکرد</h3>
-  <div class="grid three" id="analyticsKPIs"></div>
- </div>
- <div class="card" style="margin-top:15px">
-  <h3 class="section-title">هزینه‌های ثبت‌شده PM</h3>
-  <div id="costSummary"></div>
- </div>
-</section>
-
-<!-- BACKUP -->
-<section class="page" id="page-backup">
- <div class="page-head"><div><h1>پشتیبان‌گیری و مدیریت اطلاعات</h1><p>مدیریت داده‌های سامانه و انتقال اطلاعات بین دستگاه‌ها</p></div></div>
- <div class="grid two">
-  <div class="card">
-   <h3 class="section-title">پشتیبان‌گیری از اطلاعات</h3>
-   <p class="small-text">تمام اطلاعات تجهیزات، دستورکارها، گزارش‌ها، خرابی‌ها و سوابق مدول‌ها در یک فایل JSON ذخیره می‌شود.</p>
-   <button class="btn green" onclick="backupData()">⬇ دریافت فایل پشتیبان</button>
-  </div>
-  <div class="card">
-   <h3 class="section-title">بازیابی اطلاعات</h3>
-   <p class="small-text">فایل پشتیبان قبلی را انتخاب کن. اطلاعات فعلی با محتوای فایل جایگزین می‌شود.</p>
-   <input type="file" id="restoreFile" accept=".json,application/json">
-   <button class="btn orange" style="margin-top:10px" onclick="restoreData()">⬆ بازیابی اطلاعات</button>
-  </div>
-  <div class="card">
-   <h3 class="section-title">وضعیت ذخیره‌سازی</h3>
-   <div id="storageInfo" class="small-text"></div>
-  </div>
-  <div class="card">
-   <h3 class="section-title">مدیریت داده‌های آزمایشی</h3>
-   <p class="small-text">بازنشانی اطلاعات، داده‌های فعلی را پاک و تجهیزات پایه را دوباره ایجاد می‌کند.</p>
-   <button class="btn red" onclick="resetData()">بازنشانی کامل سامانه</button>
-  </div>
- </div>
- <div class="notice" style="margin-top:15px">این نسخه به سرور مرکزی متصل نیست. برای استفاده هم‌زمان چند کاربر، ثبت سوابق مشترک و دسترسی از چند دستگاه، در مرحله بعد باید پایگاه داده و API سمت سرور اضافه شود.</div>
-</section>
-
-<div class="footer">شرکت آب و فاضلاب استان فارس | تصفیه‌خانه فاضلاب شهر مرودشت | AI Wastewater OS</div>
-</div>
-</main>
-</div>
-
-<!-- MODAL -->
-<div class="modal-bg" id="modalBg" onclick="if(event.target===this)closeModal()">
- <div class="modal">
-  <div class="modal-head"><h2 id="modalTitle">فرم ثبت اطلاعات</h2><button class="close" onclick="closeModal()">✕</button></div>
-  <div id="modalBody"></div>
- </div>
-</div>
-<div class="toast" id="toast"></div>
-
+<section class="page" id="page-process"><div class="page-head"><div><h2>واحدهای فرایندی تصفیه‌خانه</h2><p>فهرست پایه قابل ویرایش؛ مشخصات فرایندی باید با نقشه‌ها و مدارک چون‌ساخت تطبیق داده شود.</p></div><button class="btn primary" onclick="openProcessModal()">＋ افزودن واحد</button></div><div class="notice warn">این فهرست، الگوی پایه برای ثبت اطلاعات واحدهای فرایندی است و به‌معنای تأیید تعداد، ظرفیت یا آرایش واقعی تجهیزات مرودشت نیست.</div><div class="grid three-col" id="processList"></div></section>
+<section class="page" id="page-modules"><div class="page-head"><div><h2>مدیریت مدول‌های تصفیه‌خانه</h2><p>ثبت وضعیت، ظرفیت، تاریخچه تغییر وضعیت و توضیحات هر مدول.</p></div><button class="btn primary" onclick="openModuleModal()">＋ افزودن مدول</button></div><div class="notice warn">وضعیت اولیه مدول‌ها در صورت نبود اطلاعات معتبر «تعیین نشده» است. اطلاعات را با وضعیت واقعی بهره‌برداری اصلاح کنید.</div><div class="grid three-col" id="moduleList"></div><div class="panel"><div class="panel-head"><h3>تاریخچه تغییرات مدول‌ها</h3></div><div class="table-wrap"><table><thead><tr><th>تاریخ</th><th>مدول</th><th>وضعیت قبلی</th><th>وضعیت جدید</th><th>توضیحات</th></tr></thead><tbody id="moduleHistoryTable"></tbody></table></div></div></section>
+<section class="page" id="page-equipment"><div class="page-head"><div><h2>بانک اطلاعات تجهیزات</h2><p>شناسنامه تجهیزات، محل نصب، وضعیت و سوابق نگهداری.</p></div><button class="btn primary" onclick="openEquipmentModal()">＋ ثبت تجهیز</button></div><div class="notice warn">تجهیزات نمونه در بانک اولیه صرفاً ساختار پیشنهادی هستند. پیش از استفاده عملیاتی، تعداد، کد، سازنده، مدل و محل نصب را با فهرست واقعی تجهیزات تطبیق دهید.</div><div class="panel"><div class="toolbar"><input id="equipmentSearch" placeholder="جست‌وجو نام یا کد تجهیز"><select id="equipmentStatus"><option value="">همه وضعیت‌ها</option><option>در سرویس</option><option>رزرو</option><option>خارج از سرویس</option><option>نیازمند تعمیر</option></select><select id="equipmentType"><option value="">همه گروه‌ها</option></select></div><div class="table-wrap"><table><thead><tr><th>کد تجهیز</th><th>نام تجهیز</th><th>گروه</th><th>واحد / محل نصب</th><th>وضعیت</th><th>آخرین سرویس</th><th>عملیات</th></tr></thead><tbody id="equipmentTable"></tbody></table></div></div></section>
+<section class="page" id="page-pm"><div class="page-head"><div><h2>نگهداری پیشگیرانه (PM)</h2><p>ثبت برنامه، دستورکار، چک‌لیست، مسئول اجرا، زمان و هزینه.</p></div><button class="btn primary" onclick="openPMModal()">＋ دستورکار جدید</button></div><div class="grid kpis" id="pmKpis"></div><div class="panel"><div class="toolbar"><input id="pmSearch" placeholder="جست‌وجوی دستورکار"><select id="pmStatus"><option value="">همه وضعیت‌ها</option><option>برنامه‌ریزی‌شده</option><option>در حال انجام</option><option>انجام‌شده</option><option>لغوشده</option></select></div><div class="table-wrap"><table><thead><tr><th>شماره دستورکار</th><th>تجهیز</th><th>نوع فعالیت</th><th>تاریخ برنامه</th><th>مسئول</th><th>وضعیت</th><th>هزینه (ریال)</th><th>عملیات</th></tr></thead><tbody id="pmTable"></tbody></table></div></div></section>
+<section class="page" id="page-faults"><div class="page-head"><div><h2>خرابی‌ها و تعمیرات اصلاحی (CM)</h2><p>ثبت رخداد، علت احتمالی، اقدام اصلاحی، توقف و وضعیت رفع خرابی.</p></div><button class="btn primary" onclick="openFaultModal()">＋ ثبت خرابی</button></div><div class="grid kpis" id="faultKpis"></div><div class="panel"><div class="toolbar"><input id="faultSearch" placeholder="جست‌وجوی خرابی"><select id="faultStatus"><option value="">همه وضعیت‌ها</option><option>باز</option><option>در دست اقدام</option><option>رفع‌شده</option></select><select id="faultSeverity"><option value="">همه اولویت‌ها</option><option>بحرانی</option><option>زیاد</option><option>متوسط</option><option>کم</option></select></div><div class="table-wrap"><table><thead><tr><th>کد رخداد</th><th>تاریخ</th><th>تجهیز</th><th>شرح خرابی</th><th>اولویت</th><th>وضعیت</th><th>مدت توقف (ساعت)</th><th>عملیات</th></tr></thead><tbody id="faultTable"></tbody></table></div></div></section>
+<section class="page" id="page-backup"><div class="page-head"><div><h2>پشتیبان‌گیری و مدیریت داده‌ها</h2><p>ذخیره‌سازی محلی روی مرورگر همین دستگاه؛ انتقال فایل پشتیبان برای نگهداری امن ضروری است.</p></div></div><div class="notice danger">اطلاعات در این نسخه در حافظه محلی مرورگر ذخیره می‌شود و به‌صورت خودکار بین گوشی و رایانه همگام‌سازی نمی‌شود. پاک‌کردن داده‌های مرورگر ممکن است اطلاعات را حذف کند؛ مرتباً نسخه پشتیبان JSON بگیرید.</div><div class="grid two-col"><div class="panel"><h3>وضعیت پایگاه داده محلی</h3><div id="dbInfo" style="line-height:2.2;margin:12px 0"></div><button class="btn primary" onclick="backupJSON()">⬇ دریافت نسخه پشتیبان JSON</button> <button class="btn" onclick="exportAllCSV()">خروجی CSV داده‌ها</button></div><div class="panel"><h3>بازیابی اطلاعات</h3><p class="muted tiny">فایل پشتیبان JSON این سامانه یا ساختار قدیمی نسخه ۶ را انتخاب کنید. بازیابی، داده‌های فعلی را جایگزین می‌کند.</p><input type="file" id="restoreFile" accept=".json,application/json"><div style="margin-top:12px"><button class="btn primary" onclick="restoreJSON()">بازیابی از فایل</button> <button class="btn danger" onclick="resetData()">بازنشانی کامل داده‌ها</button></div></div></div><div class="panel"><h3>راهنمای نگهداری داده</h3><ol class="tiny" style="line-height:2.2;color:var(--muted)"><li>پس از هر دوره ثبت اطلاعات، فایل JSON پشتیبان دریافت کنید.</li><li>فایل پشتیبان را در رایانه و یک فضای امن دیگر نگهداری کنید.</li><li>برای انتقال داده بین گوشی و رایانه، از خروجی JSON و سپس بازیابی در دستگاه دوم استفاده کنید.</li><li>CSV برای تحلیل در Excel مناسب است؛ JSON برای بازیابی کامل اطلاعات استفاده می‌شود.</li><li>این نسخه فاقد حساب کاربری، رمزنگاری سمت سرور و همگام‌سازی ابری است.</li></ol></div></section>
+<div class="footer">AI Wastewater OS 7.2 · احمد درویشی، رئیس قسمت بهره‌برداری فاضلاب · تصفیه‌خانه فاضلاب مرودشت · ذخیره‌سازی محلی</div>
+</div></main></div>
+<div class="modal-back" id="modalBack"><div class="modal"><div class="modal-head"><h3 id="modalTitle">فرم</h3><button class="close" onclick="closeModal()">✕</button></div><div id="modalBody"></div><div class="modal-foot" id="modalFoot"></div></div></div>
 <script>
-"use strict";
-
-const KEY="aiwastewater_marvdasht_v6";
-const $=id=>document.getElementById(id);
-const today=()=>new Date().toISOString().slice(0,10);
-const faDate=s=>s?new Date(s+"T00:00:00").toLocaleDateString("fa-IR"):"—";
-const uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,7);
-const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
-const num=n=>Number(n||0).toLocaleString("fa-IR");
-const units=[
- {id:"screen",name:"واحد آشغال‌گیری",desc:"آشغال‌گیری مکانیکی به همراه کلیه متعلقات، تجهیزات و سیستم‌های محرک و انتقال مواد"},
- {id:"pump",name:"ایستگاه پمپاژ",desc:"۵ دستگاه پمپ لجن‌کش به همراه اتصالات، شیرآلات، تابلو و تجهیزات کنترلی"},
- {id:"grit",name:"واحد دانه‌گیری",desc:"پل دانه‌گیر و متعلقات، تجهیزات جمع‌آوری و انتقال مواد"},
- {id:"grease",name:"واحد چربی‌گیری",desc:"تجهیزات جداسازی چربی و متعلقات مکانیکی و الکتریکی"},
- {id:"blowers",name:"بلوئرها",desc:"۳ دستگاه بلوئر دانه‌گیر و چربی‌گیر به همراه متعلقات"},
- {id:"bio",name:"واحد بیولوژیک",desc:"۲ مدول بیولوژیک، لاگون‌های هوادهی سطحی، الکتروموتورها و واحدهای ته‌نشینی"},
- {id:"chlorine",name:"حوضچه تماس کلر",desc:"حوضچه تماس، تجهیزات تزریق و اختلاط و متعلقات"},
- {id:"outlet",name:"خروجی نهایی",desc:"کانال و تجهیزات اندازه‌گیری و کنترل پساب خروجی"},
- {id:"control",name:"اتاق کنترل و برق",desc:"تابلوهای برق، سیستم کنترل، ابزار دقیق و تجهیزات حفاظتی"},
- {id:"generator",name:"دیزل ژنراتور",desc:"دیزل ژنراتور، تابلو ATS، باتری، سیستم سوخت و متعلقات"},
- {id:"transformer",name:"ترانسفورماتور",desc:"ترانس، تجهیزات حفاظتی، ارت و متعلقات"},
- {id:"hypo",name:"اتاق تزریق آب ژاول",desc:"مخازن، پمپ‌های تزریق، لوله‌کشی و تجهیزات ایمنی"}
+'use strict';
+const DB_KEY='aiwastewater_marvdasht_v7',OLD_KEY='aiwastewater_marvdasht_v6';
+const metricDefs=[
+ {key:'qin',label:'دبی ورودی',unit:'m³/day',step:'any',group:'کمی'},{key:'qout',label:'دبی خروجی',unit:'m³/day',step:'any',group:'کمی'},
+ {key:'codin',label:'COD ورودی',unit:'mg/L',step:'any',group:'کیفی'},{key:'codout',label:'COD خروجی',unit:'mg/L',step:'any',group:'کیفی'},
+ {key:'bodin',label:'BOD₅ ورودی',unit:'mg/L',step:'any',group:'کیفی'},{key:'bodout',label:'BOD₅ خروجی',unit:'mg/L',step:'any',group:'کیفی'},
+ {key:'tssin',label:'TSS ورودی',unit:'mg/L',step:'any',group:'کیفی'},{key:'tss',label:'TSS خروجی',unit:'mg/L',step:'any',group:'کیفی'},
+ {key:'phin',label:'pH ورودی',unit:'-',step:'any',group:'کیفی'},{key:'ph',label:'pH خروجی',unit:'-',step:'any',group:'کیفی'},
+ {key:'do',label:'اکسیژن محلول DO',unit:'mg/L',step:'any',group:'فرایندی'},{key:'mlss',label:'MLSS',unit:'mg/L',step:'any',group:'فرایندی'},
+ {key:'chlorine',label:'کلر باقیمانده',unit:'mg/L',step:'any',group:'کیفی'},{key:'temp',label:'دمای فاضلاب',unit:'°C',step:'any',group:'فرایندی'},
+ {key:'energy',label:'انرژی مصرفی',unit:'kWh/day',step:'any',group:'انرژی'}
 ];
-
-function makeEquipment(){
- let a=[];
- function add(unit,name,code,type="مکانیکی",count=1,interval="ماهانه"){
-  for(let i=1;i<=count;i++){
-   let suffix=count>1?"-"+String(i).padStart(2,"0"):"";
-   a.push({id:uid(),unit,name:count>1?name+" "+i:name,code:code+suffix,type,status:"سالم",interval,lastPM:"",nextPM:"",brand:"",model:"",capacity:"",notes:""});
-  }
- }
- add("screen","تجهیز آشغال‌گیری مکانیکی","FRMSCR","مکانیکی",1);
- add("pump","پمپ لجن‌کش ایستگاه پمپاژ","FRMPSP","مکانیکی",5);
- add("grit","پل دانه‌گیر","FRMDLL02SC01","الکتریکی",1,"هفتگی");
- add("grease","تجهیز چربی‌گیری","FRMGRS","مکانیکی",1);
- add("blowers","بلوئر دانه‌گیر و چربی‌گیر","FRMBLW","مکانیکی",3);
- for(let m=1;m<=2;m++){
-  for(let l=1;l<=2;l++){
-   add("bio",`مدول ${m} - لاگون هوادهی ${l}` ,`BIO-M${m}-L${l}`,"فرایندی",1);
-  }
-  add("bio",`مدول ${m} - الکتروموتور هوادهی`,`BIO-M${m}-MOTOR`,"الکتریکی",18);
-  add("bio",`مدول ${m} - واحد ته‌نشینی`,`BIO-M${m}-SETTLE`,"مکانیکی",1);
- }
- add("chlorine","تجهیزات حوضچه تماس کلر","FRMCHL","فرایندی",1);
- add("outlet","تجهیزات خروجی نهایی","FRMOUT","ابزار دقیق",1);
- add("control","تابلو برق و کنترل","FRMCTL","الکتریکی",1);
- add("generator","دیزل ژنراتور","FRMDG","مکانیکی",1);
- add("transformer","ترانسفورماتور","FRMTR","الکتریکی",1);
- add("hypo","پمپ تزریق آب ژاول","FRMHYP","مکانیکی",1);
- add("hypo","مخزن آب ژاول","FRMHYPT","مکانیکی",1);
- return a;
-}
-function fresh(){
- return {
-  equipment:makeEquipment(),pm:[],faults:[],reports:[],
-  modules:[
-   {id:"M1",name:"مدول شماره ۱",status:"در مدار",start:today(),note:"مدول فعال - وضعیت اولیه آزمایشی"},
-   {id:"M2",name:"مدول شماره ۲",status:"خارج از مدار / خشک‌سازی",start:today(),note:"مدول آماده جابه‌جایی دوره‌ای"}
-  ],
-  moduleHistory:[],settings:{manager:"احمد درویشی",technical:"معصومه حیدری",supervisor:"محمدابراهیم نام‌آور"}
- };
-}
-let db;
-try{db=JSON.parse(localStorage.getItem(KEY))||fresh()}catch(e){db=fresh()}
-["equipment","pm","faults","reports","modules","moduleHistory"].forEach(k=>{if(!Array.isArray(db[k]))db[k]=fresh()[k]});
-if(!db.settings)db.settings=fresh().settings;
-
-function save(){
- try{
-  localStorage.setItem(KEY,JSON.stringify(db));
-  $("lastSave").textContent="آخرین ذخیره: "+new Date().toLocaleTimeString("fa-IR");
-  return true;
- }catch(e){
-  toast("ذخیره‌سازی ناموفق؛ فضای مرورگر کافی نیست.");
-  return false;
- }
-}
-function toast(msg){
- const t=$("toast");t.textContent=msg;t.style.display="block";
- clearTimeout(window.toastTimer);window.toastTimer=setTimeout(()=>t.style.display="none",3000);
-}
-function showPage(id){
- document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
- $("page-"+id).classList.add("active");
- document.querySelectorAll(".nav").forEach(b=>b.classList.toggle("active",b.dataset.page===id));
- const active=document.querySelector('.nav[data-page="'+id+'"]');
- $("topTitle").textContent=active?active.textContent.trim():"سامانه";
- $("sidebar").classList.remove("open");
- renderAll();
-}
-document.querySelectorAll(".nav").forEach(b=>b.addEventListener("click",()=>showPage(b.dataset.page)));
-$("today").textContent=new Date().toLocaleDateString("fa-IR");
-
-function unitName(id){return units.find(x=>x.id===id)?.name||id||"—"}
-function statusBadge(s){
- let cls=s==="سالم"||s==="انجام‌شده"||s==="رفع‌شده"||s==="در مدار"?"green":
- s==="خراب"||s==="باز"||s==="خارج از سرویس"?"red":
- s==="در حال انجام"||s==="نیازمند بررسی"?"orange":"blue";
- return `<span class="badge ${cls}">${esc(s||"—")}</span>`;
-}
-function emptyRow(cols,msg="موردی ثبت نشده است"){return `<tr><td colspan="${cols}" class="empty">${msg}</td></tr>`}
-function renderAll(){
- renderDashboard();renderProcess();renderModules();renderEquipment();renderPM();renderFaults();renderReports();renderAnalytics();renderStorage();
-}
-
-function renderDashboard(){
- const e=db.equipment;
- $("kEquip").textContent=num(e.length);
- $("kHealthy").textContent=num(e.filter(x=>x.status==="سالم").length);
- $("kPM").textContent=num(db.pm.filter(x=>x.status==="باز"||x.status==="در حال انجام").length);
- $("kFault").textContent=num(db.faults.filter(x=>x.status!=="رفع‌شده").length);
- const statuses=["سالم","نیازمند بررسی","خراب","خارج از سرویس"];
- const colors=["#16a36a","#ed9b26","#dc4c54","#718397"];
- $("equipmentStatus").innerHTML=statuses.map((s,i)=>{
-  let n=e.filter(x=>x.status===s).length,p=e.length?n/e.length*100:0;
-  return `<div style="margin:13px 0"><div style="display:flex;justify-content:space-between;font-size:10px;margin-bottom:6px"><span>${s}</span><b>${num(n)} (${Math.round(p)}٪)</b></div><div class="progress"><span style="width:${p}%;background:${colors[i]}"></span></div></div>`;
- }).join("");
- $("moduleOverview").innerHTML=db.modules.map(m=>`<div style="padding:12px 0;border-bottom:1px solid var(--line)"><div style="display:flex;justify-content:space-between"><b style="font-size:11px">${esc(m.name)}</b>${statusBadge(m.status)}</div><div class="small-text" style="margin-top:7px">${esc(m.note||"بدون توضیحات")}</div></div>`).join("");
- const activities=[
-  ...db.pm.map(x=>({date:x.date,title:"دستورکار PM: "+x.equipment,desc:x.activity+" | "+x.status})),
-  ...db.faults.map(x=>({date:x.date,title:"ثبت خرابی: "+x.equipment,desc:x.title+" | "+x.status})),
-  ...db.reports.map(x=>({date:x.date,title:"گزارش روزانه",desc:x.unit+" | "+x.status}))
- ].sort((a,b)=>(b.date||"").localeCompare(a.date||"")).slice(0,6);
- $("recentActivity").innerHTML=activities.length?activities.map(a=>`<div class="timeline-item"><b>${esc(a.title)}</b><p>${faDate(a.date)} — ${esc(a.desc)}</p></div>`).join(""):`<div class="empty">هنوز فعالیتی ثبت نشده است.</div>`;
- const done=db.pm.filter(x=>x.status==="انجام‌شده").length;
- const all=db.pm.length;
- $("pmOverview").innerHTML=`<div style="font-size:25px;font-weight:900">${all?Math.round(done/all*100):0}٪</div><div class="small-text">درصد تکمیل دستورکارهای PM</div><div class="progress" style="margin:12px 0"><span style="width:${all?done/all*100:0}%"></span></div><div class="module-stat"><span>کل دستورکار</span><b>${num(all)}</b></div><div class="module-stat"><span>تکمیل‌شده</span><b>${num(done)}</b></div><div class="module-stat"><span>باز و در حال انجام</span><b>${num(all-done)}</b></div>`;
- $("dashboardUnits").innerHTML=units.map(u=>`<div class="unit-card"><h3>${esc(u.name)}</h3><p>${esc(u.desc)}</p><div class="unit-foot"><span class="badge blue">${num(e.filter(x=>x.unit===u.id).length)} تجهیز</span><button class="btn small secondary" onclick="filterEquipmentUnit('${u.id}')">مشاهده</button></div></div>`).join("");
-}
-function renderProcess(){
- $("processUnits").innerHTML=units.map(u=>{
-  const list=db.equipment.filter(e=>e.unit===u.id);
-  return `<div class="unit-card"><h3>${esc(u.name)}</h3><p>${esc(u.desc)}</p><div style="margin-top:12px"><div class="module-stat"><span>تعداد اقلام ثبت‌شده</span><b>${num(list.length)}</b></div><div class="module-stat"><span>سالم</span><b>${num(list.filter(x=>x.status==="سالم").length)}</b></div><div class="module-stat"><span>خراب / نیازمند بررسی</span><b>${num(list.filter(x=>x.status==="خراب"||x.status==="نیازمند بررسی").length)}</b></div></div><button class="btn small secondary" onclick="filterEquipmentUnit('${u.id}')">مشاهده تجهیزات</button></div>`;
- }).join("");
-}
-function filterEquipmentUnit(id){
- showPage("equipment");$("equipUnitFilter").value=id;renderEquipment();
-}
-function renderModules(){
- $("moduleCards").innerHTML=db.modules.map(m=>{
-  const n=m.id==="M1"?"۱":"۲";
-  return `<div class="module-card"><div style="display:flex;justify-content:space-between;align-items:center"><h3>${esc(m.name)}</h3>${statusBadge(m.status)}</div><p class="small-text">${esc(m.note||"بدون توضیحات")}</p><div class="module-stat"><span>تعداد لاگون هوادهی سطحی</span><b>۲</b></div><div class="module-stat"><span>الکتروموتورهای هوادهی</span><b>۱۸ دستگاه</b></div><div class="module-stat"><span>واحد ته‌نشینی</span><b>۱ واحد</b></div><div class="module-stat"><span>تاریخ شروع وضعیت فعلی</span><b>${faDate(m.start)}</b></div><div class="form-actions"><button class="btn small secondary" onclick="editModule('${m.id}')">ویرایش وضعیت</button></div></div>`;
- }).join("");
- $("moduleHistory").innerHTML=db.moduleHistory.length?db.moduleHistory.slice().reverse().map(h=>`<tr><td>${faDate(h.date)}</td><td>${esc(h.out)}</td><td>${esc(h.in)}</td><td>${esc(h.sludge)}</td><td>${esc(h.note)}</td></tr>`).join(""):emptyRow(5);
-}
-function openModuleForm(){
- const opts=db.modules.map(m=>`<option>${esc(m.name)}</option>`).join("");
- openModal("ثبت جابه‌جایی مدول",`<form id="moduleForm" class="form-grid">
- <div class="field"><label>تاریخ جابه‌جایی</label><input name="date" type="date" value="${today()}" required></div>
- <div class="field"><label>مدول خارج‌شده از مدار</label><select name="out">${opts}</select></div>
- <div class="field"><label>مدول واردشده به مدار</label><select name="in">${opts}</select></div>
- <div class="field"><label>وضعیت لجن مدول خارج‌شده</label><select name="sludge"><option>در حال خشک‌شدن</option><option>خشک‌شده</option><option>آماده تخلیه</option><option>تخلیه‌شده</option><option>نیازمند بررسی</option></select></div>
- <div class="field full"><label>توضیحات</label><textarea name="note"></textarea></div>
- <div class="field full"><button class="btn green">ثبت جابه‌جایی</button></div></form>`);
- $("moduleForm").onsubmit=e=>{
-  e.preventDefault();let f=new FormData(e.target),out=f.get("out"),inn=f.get("in");
-  if(out===inn){toast("مدول خارج‌شده و واردشده نمی‌توانند یکسان باشند.");return}
-  let mo=db.modules.find(x=>x.name===out),mi=db.modules.find(x=>x.name===inn);
-  mo.status="خارج از مدار / خشک‌سازی";mo.start=f.get("date");mo.note="خارج از مدار؛ "+f.get("sludge");
-  mi.status="در مدار";mi.start=f.get("date");mi.note="مدول فعال در مدار بهره‌برداری";
-  db.moduleHistory.push({date:f.get("date"),out,in:inn,sludge:f.get("sludge"),note:f.get("note")});
-  save();closeModal();renderAll();toast("سوابق جابه‌جایی ثبت شد.");
- };
-}
-function editModule(id){
- let m=db.modules.find(x=>x.id===id);if(!m)return;
- openModal("ویرایش وضعیت مدول",`<form id="editModuleForm" class="form-grid">
- <div class="field"><label>نام مدول</label><input value="${esc(m.name)}" disabled></div>
- <div class="field"><label>وضعیت</label><select name="status">${["در مدار","خارج از مدار / خشک‌سازی","تعمیرات","آماده بهره‌برداری"].map(s=>`<option ${s===m.status?"selected":""}>${s}</option>`).join("")}</select></div>
- <div class="field"><label>تاریخ شروع وضعیت</label><input type="date" name="start" value="${esc(m.start||today())}"></div>
- <div class="field full"><label>توضیحات</label><textarea name="note">${esc(m.note)}</textarea></div>
- <div class="field full"><button class="btn">ذخیره تغییرات</button></div></form>`);
- $("editModuleForm").onsubmit=e=>{e.preventDefault();let f=new FormData(e.target);m.status=f.get("status");m.start=f.get("start");m.note=f.get("note");save();closeModal();renderAll();toast("وضعیت مدول اصلاح شد.")};
-}
-
-function fillUnitSelect(id,selected=""){
- $(id).innerHTML=units.map(u=>`<option value="${u.id}" ${selected===u.id?"selected":""}>${esc(u.name)}</option>`).join("");
-}
-function renderEquipment(){
- const q=($("equipSearch")?.value||"").toLowerCase(),unit=$("equipUnitFilter")?.value||"",status=$("equipStatusFilter")?.value||"";
- $("equipUnitFilter").innerHTML='<option value="">همه واحدها</option>'+units.map(u=>`<option value="${u.id}" ${unit===u.id?"selected":""}>${esc(u.name)}</option>`).join("");
- const list=db.equipment.filter(x=>(!q||(x.name+" "+x.code).toLowerCase().includes(q))&&(!unit||x.unit===unit)&&(!status||x.status===status));
- $("equipmentTable").innerHTML=list.length?list.map(x=>`<tr><td>${esc(x.code)}</td><td><b>${esc(x.name)}</b></td><td>${esc(unitName(x.unit))}</td><td>${esc(x.type)}</td><td>${statusBadge(x.status)}</td><td>${esc(x.interval||"—")}</td><td><div class="actions"><button class="btn small secondary" onclick="viewEquipment('${x.id}')">جزئیات</button><button class="btn small" onclick="openEquipmentForm('${x.id}')">ویرایش</button><button class="btn small red" onclick="deleteItem('equipment','${x.id}')">حذف</button></div></td></tr>`).join(""):emptyRow(7);
-}
-function openEquipmentForm(id=""){
- let x=db.equipment.find(e=>e.id===id)||{name:"",code:"",unit:"screen",type:"مکانیکی",status:"سالم",interval:"ماهانه",lastPM:"",nextPM:"",brand:"",model:"",capacity:"",notes:""};
- openModal(id?"ویرایش شناسنامه تجهیز":"ثبت تجهیز جدید",`<form id="equipmentForm" class="form-grid">
- <div class="field"><label>نام تجهیز</label><input name="name" value="${esc(x.name)}" required></div>
- <div class="field"><label>کد تجهیز</label><input name="code" value="${esc(x.code)}" required></div>
- <div class="field"><label>واحد</label><select name="unit" id="eUnit"></select></div>
- <div class="field"><label>نوع تجهیز</label><select name="type">${["مکانیکی","الکتریکی","ابزار دقیق","فرایندی","سازه‌ای"].map(s=>`<option ${s===x.type?"selected":""}>${s}</option>`).join("")}</select></div>
- <div class="field"><label>وضعیت</label><select name="status">${["سالم","نیازمند بررسی","خراب","خارج از سرویس"].map(s=>`<option ${s===x.status?"selected":""}>${s}</option>`).join("")}</select></div>
- <div class="field"><label>تناوب PM</label><select name="interval">${["روزانه","هفتگی","دو هفته یکبار","ماهانه","فصلی","شش‌ماهه","سالانه","حسب نیاز"].map(s=>`<option ${s===x.interval?"selected":""}>${s}</option>`).join("")}</select></div>
- <div class="field"><label>برند سازنده</label><input name="brand" value="${esc(x.brand)}"></div>
- <div class="field"><label>مدل</label><input name="model" value="${esc(x.model)}"></div>
- <div class="field"><label>ظرفیت / توان</label><input name="capacity" value="${esc(x.capacity)}"></div>
- <div class="field"><label>آخرین PM</label><input type="date" name="lastPM" value="${esc(x.lastPM)}"></div>
- <div class="field"><label>PM بعدی</label><input type="date" name="nextPM" value="${esc(x.nextPM)}"></div>
- <div class="field full"><label>توضیحات</label><textarea name="notes">${esc(x.notes)}</textarea></div>
- <div class="field full"><button class="btn green">ذخیره شناسنامه تجهیز</button></div></form>`);
- fillUnitSelect("eUnit",x.unit);
- $("equipmentForm").onsubmit=e=>{
-  e.preventDefault();let f=Object.fromEntries(new FormData(e.target));
-  if(id)Object.assign(x,f);else db.equipment.push({id:uid(),...f});
-  save();closeModal();renderAll();toast("اطلاعات تجهیز ذخیره شد.");
- };
-}
-function viewEquipment(id){
- let x=db.equipment.find(e=>e.id===id);if(!x)return;
- openModal("شناسنامه تجهیز",`<div class="grid two"><div><p><b>نام:</b> ${esc(x.name)}</p><p><b>کد:</b> ${esc(x.code)}</p><p><b>واحد:</b> ${esc(unitName(x.unit))}</p><p><b>نوع:</b> ${esc(x.type)}</p><p><b>وضعیت:</b> ${statusBadge(x.status)}</p></div><div><p><b>تناوب PM:</b> ${esc(x.interval)}</p><p><b>برند:</b> ${esc(x.brand||"—")}</p><p><b>مدل:</b> ${esc(x.model||"—")}</p><p><b>ظرفیت:</b> ${esc(x.capacity||"—")}</p><p><b>آخرین PM:</b> ${faDate(x.lastPM)}</p><p><b>PM بعدی:</b> ${faDate(x.nextPM)}</p></div></div><hr><p><b>توضیحات:</b> ${esc(x.notes||"—")}</p>`);
-}
-
-function openPMForm(){
- const opts=db.equipment.map(e=>`<option value="${e.id}">${esc(e.name)} (${esc(e.code)})</option>`).join("");
- openModal("فرم دستورکار / گزارش کار نت پیشگیرانه MIMS-003",`
- <form id="pmForm">
- <div class="form-section">۱. مشخصات دستورکار</div>
- <div class="form-grid">
- <div class="field"><label>شماره دستورکار</label><input name="number" value="PM-${new Date().getFullYear()}-${String(db.pm.length+1).padStart(4,"0")}" required></div>
- <div class="field"><label>تاریخ دستورکار</label><input name="date" type="date" value="${today()}" required></div>
- <div class="field"><label>تجهیز / آیتم</label><select name="equipmentId" id="pmEquipment" required>${opts}</select></div>
- <div class="field"><label>نوع دستورکار</label><select name="type"><option>P.D.M</option><option>C.B.M</option></select></div>
- <div class="field"><label>گروه نت</label><select name="group"><option>مکانیکی</option><option>الکتریکی</option><option>ابزار دقیق</option><option>فرایندی</option><option>عمومی</option></select></div>
- <div class="field"><label>نام فعالیت</label><input name="activity" value="بازدید و کنترل وضعیت" required></div>
- <div class="field"><label>کد فعالیت</label><input name="activityCode" value="PM"></div>
- <div class="field"><label>دوره تناوب فعالیت</label><select name="interval"><option>روزانه</option><option>هفتگی</option><option>ماهانه</option><option>فصلی</option><option>شش‌ماهه</option><option>سالانه</option><option>حسب نیاز</option></select></div>
- <div class="field"><label>مدت زمان برنامه‌ریزی‌شده (ساعت)</label><input type="number" name="plannedHours" min="0" step=".5" value="2"></div>
- <div class="field"><label>سطح نگهداری و تعمیرات</label><select name="level"><option>۱</option><option selected>۲</option><option>۳</option><option>۴</option><option>۵</option></select></div>
- <div class="field"><label>کد اولویت</label><select name="priority"><option>A</option><option>B</option><option>C</option><option>D</option></select></div>
- <div class="field"><label>مجوز HSE لازم است؟</label><select name="hse"><option>خیر</option><option>بله</option></select></div>
- <div class="field"><label>مجوز واحد CBM لازم است؟</label><select name="cbm"><option>خیر</option><option>بله</option></select></div>
- <div class="field"><label>مجری فعالیت</label><input name="executor" value="تکنسین مربوطه"></div>
- <div class="field"><label>تعداد مجری</label><input name="executorCount" type="number" min="0" value="1"></div>
- <div class="field"><label>ناظر فعالیت</label><input name="supervisor" value="معصومه حیدری"></div>
- <div class="field"><label>تعداد ناظر</label><input name="supervisorCount" type="number" min="0" value="1"></div>
- <div class="field full"><label>شرح فعالیت مطابق PM Planning</label><textarea name="description" required placeholder="شرح دقیق فعالیت، اجزای مورد بازدید، تمیزکاری، روانکاری، کنترل اتصالات و..."></textarea></div>
- </div>
- <div class="form-section">۲. گزارش اجرای فعالیت</div>
- <div class="form-grid">
- <div class="field full"><label>شرح کار انجام‌شده</label><textarea name="workDone" placeholder="شرح اقدامات واقعی انجام‌شده"></textarea></div>
- <div class="field"><label>وضعیت تجهیز پس از PM</label><select name="result"><option>سالم</option><option>نیاز به صدور CM</option><option>نیازمند بررسی</option></select></div>
- <div class="field"><label>نحوه انجام PM</label><select name="method"><option>درون‌سازمانی</option><option>برون‌سپاری</option></select></div>
- <div class="field"><label>نام شرکت / واحد مجری</label><input name="company" value="امور آبفا"></div>
- <div class="field"><label>تاریخ شروع عملیات</label><input name="startDate" type="date"></div>
- <div class="field"><label>ساعت شروع</label><input name="startTime" type="time"></div>
- <div class="field"><label>تاریخ پایان عملیات</label><input name="endDate" type="date"></div>
- <div class="field"><label>ساعت پایان</label><input name="endTime" type="time"></div>
- <div class="field"><label>مدت تأخیر (ساعت)</label><input name="delay" type="number" min="0" step=".5" value="0"></div>
- <div class="field"><label>علت تأخیر</label><input name="delayReason"></div>
- <div class="field"><label>هزینه کل PM (ریال)</label><input name="cost" type="number" min="0" value="0"></div>
- <div class="field"><label>نام انجام‌دهنده</label><input name="worker" value="ابوذر اصلی‌نسب"></div>
- <div class="field"><label>ساعت کارکرد نیروی انسانی</label><input name="laborHours" type="number" min="0" step=".5" value="0"></div>
- <div class="field"><label>قطعات و مواد مصرفی</label><input name="materials" placeholder="نام و مقدار"></div>
- <div class="field"><label>ابزارآلات و ماشین‌آلات</label><input name="tools" placeholder="نام ابزار و ساعت کارکرد"></div>
- <div class="field full"><label>توضیحات تکمیلی</label><textarea name="notes"></textarea></div>
- </div>
- <div class="form-section">۳. تأیید و گردش کار</div>
- <div class="form-grid">
- <div class="field"><label>کارشناس نت تصفیه‌خانه</label><input name="technical" value="معصومه حیدری"></div>
- <div class="field"><label>نماینده بهره‌برداری</label><input name="operationRep" value="محمدابراهیم نام‌آور"></div>
- <div class="field"><label>مسئول تصفیه‌خانه</label><input name="manager" value="احمد درویشی"></div>
- <div class="field"><label>وضعیت دستورکار</label><select name="status"><option>باز</option><option>در حال انجام</option><option>انجام‌شده</option><option>لغوشده</option></select></div>
- </div>
- <div class="form-actions"><button class="btn green">ثبت دستورکار / گزارش کار</button><button type="button" class="btn secondary" onclick="closeModal()">انصراف</button></div>
- </form>`);
- $("pmForm").onsubmit=e=>{
-  e.preventDefault();let f=Object.fromEntries(new FormData(e.target));
-  let eq=db.equipment.find(x=>x.id===f.equipmentId);
-  if(!eq){toast("تجهیز انتخاب‌شده معتبر نیست.");return}
-  db.pm.push({id:uid(),...f,equipment:eq.name,code:eq.code});
-  if(f.status==="انجام‌شده"){eq.lastPM=f.endDate||f.date;eq.status=f.result==="سالم"?"سالم":f.result==="نیاز به صدور CM"?"نیازمند بررسی":eq.status;}
-  save();closeModal();renderAll();toast("دستورکار PM ثبت شد.");
- };
-}
-function renderPM(){
- const q=($("pmSearch")?.value||"").toLowerCase(),st=$("pmStatusFilter")?.value||"";
- const list=db.pm.filter(x=>(!q||(x.number+x.equipment+x.activity).toLowerCase().includes(q))&&(!st||x.status===st));
- $("pmTable").innerHTML=list.length?list.slice().reverse().map(x=>`<tr><td>${esc(x.number)}</td><td>${faDate(x.date)}</td><td>${esc(x.equipment)}</td><td>${esc(x.activity)}</td><td>${esc(x.type)}</td><td>${esc(x.priority)}</td><td>${statusBadge(x.status)}</td><td><div class="actions"><button class="btn small secondary" onclick="viewPM('${x.id}')">جزئیات</button><button class="btn small" onclick="completePM('${x.id}')">تغییر وضعیت</button><button class="btn small red" onclick="deleteItem('pm','${x.id}')">حذف</button></div></td></tr>`).join(""):emptyRow(8);
- $("pmTotal").textContent=num(db.pm.length);$("pmDone").textContent=num(db.pm.filter(x=>x.status==="انجام‌شده").length);$("pmProgress").textContent=num(db.pm.filter(x=>x.status==="در حال انجام").length);$("pmOpen").textContent=num(db.pm.filter(x=>x.status==="باز").length);
-}
-function viewPM(id){
- let x=db.pm.find(p=>p.id===id);if(!x)return;
- openModal("جزئیات دستورکار "+x.number,`
- <div class="grid two">
- <div><p><b>تجهیز:</b> ${esc(x.equipment)}</p><p><b>کد تجهیز:</b> ${esc(x.code)}</p><p><b>تاریخ:</b> ${faDate(x.date)}</p><p><b>نوع نت:</b> ${esc(x.type)}</p><p><b>گروه نت:</b> ${esc(x.group)}</p><p><b>فعالیت:</b> ${esc(x.activity)}</p><p><b>کد فعالیت:</b> ${esc(x.activityCode)}</p><p><b>تناوب:</b> ${esc(x.interval)}</p><p><b>اولویت:</b> ${esc(x.priority)}</p><p><b>سطح نت:</b> ${esc(x.level)}</p></div>
- <div><p><b>مجری:</b> ${esc(x.executor)}</p><p><b>ناظر:</b> ${esc(x.supervisor)}</p><p><b>وضعیت:</b> ${statusBadge(x.status)}</p><p><b>نتیجه:</b> ${esc(x.result||"—")}</p><p><b>هزینه:</b> ${num(x.cost)} ریال</p><p><b>مدت کار:</b> ${esc(x.laborHours||0)} ساعت</p><p><b>شروع:</b> ${faDate(x.startDate)} ${esc(x.startTime||"")}</p><p><b>پایان:</b> ${faDate(x.endDate)} ${esc(x.endTime||"")}</p></div>
- </div><hr><h4>شرح فعالیت برنامه‌ریزی‌شده</h4><p>${esc(x.description)}</p><h4>شرح کار انجام‌شده</h4><p>${esc(x.workDone||"ثبت نشده")}</p><h4>مواد و ابزار</h4><p>${esc(x.materials||"—")} | ${esc(x.tools||"—")}</p><h4>توضیحات</h4><p>${esc(x.notes||"—")}</p>
- <button class="btn dark no-print" onclick="window.print()">چاپ دستورکار</button>`);
-}
-function completePM(id){
- let x=db.pm.find(p=>p.id===id);if(!x)return;
- openModal("به‌روزرسانی وضعیت دستورکار",`<form id="pmStatusForm"><div class="field"><label>وضعیت جدید</label><select name="status">${["باز","در حال انجام","انجام‌شده","لغوشده"].map(s=>`<option ${s===x.status?"selected":""}>${s}</option>`).join("")}</select></div><div class="field" style="margin-top:10px"><label>شرح کار انجام‌شده / توضیحات</label><textarea name="workDone">${esc(x.workDone||"")}</textarea></div><div class="field" style="margin-top:10px"><label>تاریخ پایان</label><input type="date" name="endDate" value="${x.endDate||today()}"></div><button class="btn green" style="margin-top:12px">ثبت تغییرات</button></form>`);
- $("pmStatusForm").onsubmit=e=>{e.preventDefault();let f=new FormData(e.target);x.status=f.get("status");x.workDone=f.get("workDone");x.endDate=f.get("endDate");if(x.status==="انجام‌شده"){let eq=db.equipment.find(z=>z.code===x.code);if(eq)eq.lastPM=x.endDate;}save();closeModal();renderAll();toast("وضعیت دستورکار به‌روزرسانی شد.")};
-}
-
-function openFaultForm(){
- const opts=db.equipment.map(e=>`<option value="${e.id}">${esc(e.name)}</option>`).join("");
- openModal("ثبت خرابی / درخواست تعمیرات CM",`<form id="faultForm" class="form-grid">
- <div class="field"><label>تاریخ ثبت</label><input name="date" type="date" value="${today()}" required></div>
- <div class="field"><label>تجهیز</label><select name="equipmentId">${opts}</select></div>
- <div class="field"><label>اولویت</label><select name="priority"><option>فوری</option><option>زیاد</option><option>متوسط</option><option>کم</option></select></div>
- <div class="field"><label>عنوان خرابی</label><input name="title" required></div>
- <div class="field"><label>مسئول پیگیری</label><input name="owner" value="مسئول گروه نت"></div>
- <div class="field"><label>وضعیت</label><select name="status"><option>باز</option><option>در حال تعمیر</option><option>رفع‌شده</option></select></div>
- <div class="field full"><label>شرح خرابی و علائم مشاهده‌شده</label><textarea name="description" required></textarea></div>
- <div class="field full"><label>اقدام اصلاحی انجام‌شده / پیشنهادی</label><textarea name="action"></textarea></div>
- <div class="field full"><label>توضیحات</label><textarea name="notes"></textarea></div>
- <div class="field full"><button class="btn red">ثبت خرابی و ایجاد سابقه CM</button></div>
- </form>`);
- $("faultForm").onsubmit=e=>{
-  e.preventDefault();let f=Object.fromEntries(new FormData(e.target)),eq=db.equipment.find(z=>z.id===f.equipmentId);
-  db.faults.push({id:uid(),...f,equipment:eq?.name||"",code:eq?.code||""});
-  if(eq)eq.status="خراب";
-  save();closeModal();renderAll();toast("خرابی ثبت شد.");
- };
-}
-function renderFaults(){
- const q=($("faultSearch")?.value||"").toLowerCase(),st=$("faultStatusFilter")?.value||"";
- const list=db.faults.filter(x=>(!q||(x.title+x.equipment+x.description).toLowerCase().includes(q))&&(!st||x.status===st));
- $("faultTable").innerHTML=list.length?list.slice().reverse().map(x=>`<tr><td>${esc(x.id.slice(-6))}</td><td>${faDate(x.date)}</td><td>${esc(x.equipment)}</td><td>${esc(x.title)}</td><td>${esc(x.priority)}</td><td>${esc(x.owner)}</td><td>${statusBadge(x.status)}</td><td><div class="actions"><button class="btn small secondary" onclick="viewFault('${x.id}')">جزئیات</button><button class="btn small" onclick="updateFault('${x.id}')">پیگیری</button><button class="btn small red" onclick="deleteItem('faults','${x.id}')">حذف</button></div></td></tr>`).join(""):emptyRow(8);
-}
-function viewFault(id){
- let x=db.faults.find(f=>f.id===id);if(!x)return;
- openModal("جزئیات خرابی و CM",`<p><b>تجهیز:</b> ${esc(x.equipment)}</p><p><b>تاریخ:</b> ${faDate(x.date)}</p><p><b>عنوان:</b> ${esc(x.title)}</p><p><b>اولویت:</b> ${esc(x.priority)}</p><p><b>وضعیت:</b> ${statusBadge(x.status)}</p><p><b>مسئول:</b> ${esc(x.owner)}</p><hr><b>شرح خرابی</b><p>${esc(x.description)}</p><b>اقدام اصلاحی</b><p>${esc(x.action||"—")}</p><b>توضیحات</b><p>${esc(x.notes||"—")}</p>`);
-}
-function updateFault(id){
- let x=db.faults.find(f=>f.id===id);if(!x)return;
- openModal("پیگیری خرابی",`<form id="faultUpdate"><div class="field"><label>وضعیت</label><select name="status">${["باز","در حال تعمیر","رفع‌شده"].map(s=>`<option ${s===x.status?"selected":""}>${s}</option>`).join("")}</select></div><div class="field" style="margin-top:10px"><label>شرح اقدام اصلاحی</label><textarea name="action">${esc(x.action||"")}</textarea></div><button class="btn green" style="margin-top:12px">ثبت</button></form>`);
- $("faultUpdate").onsubmit=e=>{e.preventDefault();let f=new FormData(e.target);x.status=f.get("status");x.action=f.get("action");if(x.status==="رفع‌شده"){let eq=db.equipment.find(z=>z.code===x.code);if(eq)eq.status="سالم";}save();closeModal();renderAll();toast("پیگیری خرابی ثبت شد.")};
-}
-
-function openReportForm(){
- openModal("ثبت گزارش روزانه بهره‌برداری",`<form id="reportForm" class="form-grid">
- <div class="field"><label>تاریخ گزارش</label><input name="date" type="date" value="${today()}" required></div>
- <div class="field"><label>واحد گزارش</label><select name="unit">${units.map(u=>`<option value="${u.id}">${esc(u.name)}</option>`).join("")}</select></div>
- <div class="field"><label>وضعیت کلی</label><select name="status"><option>عادی</option><option>نیازمند پیگیری</option><option>شرایط اضطراری</option></select></div>
- <div class="form-section" style="grid-column:1/-1">پارامترهای کمی و کیفی</div>
- <div class="field"><label>دبی ورودی (مترمکعب/روز)</label><input name="qin" type="number" min="0" step=".01"></div>
- <div class="field"><label>دبی خروجی (مترمکعب/روز)</label><input name="qout" type="number" min="0" step=".01"></div>
- <div class="field"><label>COD ورودی (mg/L)</label><input name="codin" type="number" min="0" step=".1"></div>
- <div class="field"><label>COD خروجی (mg/L)</label><input name="codout" type="number" min="0" step=".1"></div>
- <div class="field"><label>BOD ورودی (mg/L)</label><input name="bodin" type="number" min="0" step=".1"></div>
- <div class="field"><label>BOD خروجی (mg/L)</label><input name="bodout" type="number" min="0" step=".1"></div>
- <div class="field"><label>TSS خروجی (mg/L)</label><input name="tss" type="number" min="0" step=".1"></div>
- <div class="field"><label>اکسیژن محلول DO (mg/L)</label><input name="do" type="number" min="0" step=".1"></div>
- <div class="field"><label>MLSS (mg/L)</label><input name="mlss" type="number" min="0" step=".1"></div>
- <div class="field"><label>کلر باقیمانده (mg/L)</label><input name="chlorine" type="number" min="0" step=".01"></div>
- <div class="field"><label>وضعیت پمپ‌ها</label><input name="pumps"></div>
- <div class="field"><label>وضعیت بلوئرها</label><input name="blowers"></div>
- <div class="field"><label>وضعیت هواده‌ها</label><input name="aerators"></div>
- <div class="field"><label>وضعیت تزریق آب ژاول</label><input name="hypo"></div>
- <div class="field full"><label>شرح عملیات و ملاحظات بهره‌برداری</label><textarea name="notes"></textarea></div>
- <div class="field full"><label>تصویر پیوست (اختیاری)</label><input name="photo" id="reportPhoto" type="file" accept="image/*"></div>
- <div class="field full"><button class="btn green">ثبت گزارش روزانه</button></div>
- </form>`);
- $("reportForm").onsubmit=async e=>{
-  e.preventDefault();let f=Object.fromEntries(new FormData(e.target));let file=$("reportPhoto").files[0];
-  let photo=file?await compressImage(file):"";
-  let rec={id:uid(),...f,photo};
-  db.reports.push(rec);
-  if(!save()){db.reports.pop();return}
-  closeModal();renderAll();toast("گزارش روزانه ثبت شد.");
- };
-}
-function compressImage(file){
- return new Promise(resolve=>{
-  if(!file||!file.type.startsWith("image/"))return resolve("");
-  const reader=new FileReader();
-  reader.onload=()=>{
-   const img=new Image();
-   img.onload=()=>{
-    const max=1100,scale=Math.min(1,max/Math.max(img.width,img.height));
-    const c=document.createElement("canvas");c.width=img.width*scale;c.height=img.height*scale;
-    c.getContext("2d").drawImage(img,0,0,c.width,c.height);
-    resolve(c.toDataURL("image/jpeg",.65));
-   };
-   img.onerror=()=>resolve("");img.src=reader.result;
-  };
-  reader.onerror=()=>resolve("");reader.readAsDataURL(file);
- });
-}
-function renderReports(){
- const q=($("reportSearch")?.value||"").toLowerCase();
- const list=db.reports.filter(x=>(x.unit||"").toLowerCase().includes(q)||(x.notes||"").toLowerCase().includes(q));
- $("reportTable").innerHTML=list.length?list.slice().reverse().map(x=>`<tr><td>${faDate(x.date)}</td><td>${esc(unitName(x.unit))}</td><td>${num(x.qin)}</td><td>${num(x.qout)}</td><td>${num(x.codout)}</td><td>${num(x.do)}</td><td>${statusBadge(x.status)}</td><td><div class="actions"><button class="btn small secondary" onclick="viewReport('${x.id}')">جزئیات</button><button class="btn small red" onclick="deleteItem('reports','${x.id}')">حذف</button></div></td></tr>`).join(""):emptyRow(8);
-}
-function viewReport(id){
- let x=db.reports.find(r=>r.id===id);if(!x)return;
- const fields=[["دبی ورودی",x.qin],["دبی خروجی",x.qout],["COD ورودی",x.codin],["COD خروجی",x.codout],["BOD ورودی",x.bodin],["BOD خروجی",x.bodout],["TSS خروجی",x.tss],["DO",x.do],["MLSS",x.mlss],["کلر باقیمانده",x.chlorine]];
- openModal("جزئیات گزارش روزانه",`<p><b>تاریخ:</b> ${faDate(x.date)}</p><p><b>واحد:</b> ${esc(unitName(x.unit))}</p><p><b>وضعیت:</b> ${statusBadge(x.status)}</p><div class="grid three">${fields.map(([k,v])=>`<div class="unit-card"><div class="small-text">${k}</div><b>${esc(v||"—")}</b></div>`).join("")}</div><hr><p><b>پمپ‌ها:</b> ${esc(x.pumps||"—")}</p><p><b>بلوئرها:</b> ${esc(x.blowers||"—")}</p><p><b>هواده‌ها:</b> ${esc(x.aerators||"—")}</p><p><b>آب ژاول:</b> ${esc(x.hypo||"—")}</p><h4>ملاحظات</h4><p>${esc(x.notes||"—")}</p>${x.photo?`<h4>تصویر پیوست</h4><img src="${x.photo}" style="max-width:100%;max-height:300px;border-radius:10px">`:""}`);
-}
-
-function chartBars(id,items){
- const max=Math.max(1,...items.map(x=>x.value));
- $(id).innerHTML=items.map(x=>`<div class="bar-col"><span class="bar-val">${num(x.value)}</span><div class="bar" style="height:${Math.max(3,x.value/max*100)}%"></div><span class="bar-label">${x.label}</span></div>`).join("");
-}
-function renderAnalytics(){
- chartBars("pmChart",["باز","در حال انجام","انجام‌شده","لغوشده"].map(s=>({label:s,value:db.pm.filter(x=>x.status===s).length})));
- chartBars("faultChart",["باز","در حال تعمیر","رفع‌شده"].map(s=>({label:s,value:db.faults.filter(x=>x.status===s).length})));
- const total=db.pm.length,done=db.pm.filter(x=>x.status==="انجام‌شده").length;
- const openFaults=db.faults.filter(x=>x.status!=="رفع‌شده").length;
- const cost=db.pm.reduce((a,x)=>a+Number(x.cost||0),0);
- $("analyticsKPIs").innerHTML=[
-  ["درصد تکمیل PM",total?Math.round(done/total*100)+"٪":"—"],
-  ["خرابی‌های باز",num(openFaults)],
-  ["هزینه کل PM",num(cost)+" ریال"]
- ].map(x=>`<div class="unit-card"><div class="small-text">${x[0]}</div><div style="font-size:21px;font-weight:900;margin-top:7px">${x[1]}</div></div>`).join("");
- $("costSummary").innerHTML=`<div class="module-stat"><span>جمع هزینه ثبت‌شده دستورکارها</span><b>${num(cost)} ریال</b></div><div class="small-text">هزینه‌ها بر اساس اطلاعات ثبت‌شده در فرم PM محاسبه شده‌اند.</div>`;
-}
-function renderStorage(){
- let bytes=new Blob([JSON.stringify(db)]).size;
- $("storageInfo").innerHTML=`<p>تعداد تجهیزات: <b>${num(db.equipment.length)}</b></p><p>تعداد دستورکار PM: <b>${num(db.pm.length)}</b></p><p>تعداد خرابی‌ها: <b>${num(db.faults.length)}</b></p><p>تعداد گزارش‌های روزانه: <b>${num(db.reports.length)}</b></p><p>حجم تقریبی داده‌ها: <b>${(bytes/1024).toFixed(1)} KB</b></p><p>محل ذخیره‌سازی: حافظه محلی مرورگر</p>`;
-}
-function openModal(title,html){$("modalTitle").textContent=title;$("modalBody").innerHTML=html;$("modalBg").classList.add("show")}
-function closeModal(){$("modalBg").classList.remove("show");$("modalBody").innerHTML=""}
-function deleteItem(type,id){
- if(!confirm("آیا از حذف این سابقه مطمئن هستید؟"))return;
- db[type]=db[type].filter(x=>x.id!==id);save();renderAll();toast("سابقه حذف شد.");
-}
-function backupData(){
- const blob=new Blob([JSON.stringify(db,null,2)],{type:"application/json"});
- const a=document.createElement("a");a.href=URL.createObjectURL(blob);
- a.download="AI-Wastewater-Marvdasht-"+today()+".json";a.click();URL.revokeObjectURL(a.href);
-}
-function restoreData(){
- const file=$("restoreFile").files[0];if(!file){toast("ابتدا فایل پشتیبان را انتخاب کن.");return}
- const reader=new FileReader();
- reader.onload=()=>{
-  try{
-   const x=JSON.parse(reader.result);
-   if(!x.equipment||!x.pm||!x.faults||!x.reports)throw new Error("ساختار فایل معتبر نیست");
-   if(!confirm("اطلاعات فعلی با اطلاعات فایل پشتیبان جایگزین شود؟"))return;
-   db=x;save();renderAll();toast("اطلاعات بازیابی شد.");
-  }catch(e){toast("فایل پشتیبان معتبر نیست.")}
- };
- reader.readAsText(file);
-}
-function resetData(){
- if(!confirm("تمام اطلاعات فعلی پاک می‌شود. ادامه می‌دهی؟"))return;
- if(!confirm("این عملیات قابل بازگشت نیست؛ قبل از ادامه پشتیبان بگیر. مطمئنی؟"))return;
- db=fresh();save();renderAll();toast("سامانه به حالت اولیه بازگشت.");
-}
-
-// Seed a starter PM record template is available through the PM form.
-// Initial equipment data are generated only when no saved database exists.
-renderAll();
-</script>
-</body>
-</html>
+const baseProcesses=['آشغال‌گیری و دانه‌گیری','ایستگاه پمپاژ ورودی','ته‌نشینی اولیه','واحد هوادهی / بیولوژیکی','ته‌نشینی ثانویه','گندزدایی و کلرزنی','تخلیه پساب خروجی','تغلیظ و آبگیری لجن','خشک‌سازی لجن','تصفیه و برگشت جریان‌های جانبی','تأسیسات برق و کنترل','تأسیسات مکانیکی و عمومی'];
+function localDate(){const d=new Date();return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`}
+function uid(prefix='ID'){return prefix+'-'+Date.now().toString(36).toUpperCase()+'-'+Math.random().toString(36).slice(2,6).toUpperCase()}
+function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function emptyDB(){return {version:7,createdAt:new Date().toISOString(),reports:[],equipment:[],pm:[],faults:[],modules:[{id:'M1',name:'مدول ۱',status:'تعیین نشده',capacity:'',notes:'نیازمند تکمیل اطلاعات واقعی'},{id:'M2',name:'مدول ۲',status:'تعیین نشده',capacity:'',notes:'نیازمند تکمیل اطلاعات واقعی'}],moduleHistory:[],processes:baseProcesses.map((name,i)=>({id:'P'+(i+1),name,description:'',status:'تعیین نشده'})),activities:[]}}
+function migrate(old){const d=emptyDB();if(!old||typeof old!=='object')return d;const pick=(...keys)=>{for(const k of keys)if(Array.isArray(old[k]))return old[k];return []};
+ d.reports=pick('reports','dailyReports','daily_reports').map(r=>{const x={...r};for(const m of metricDefs){if(x[m.key]!==undefined&&x[m.key]!==''&&typeof x[m.key]!=='object'){x[m.key+'Value']=x[m.key];x[m.key+'At']=x.date||localDate();}else if(x[m.key]&&typeof x[m.key]==='object'){x[m.key+'Value']=x[m.key].value;x[m.key+'At']=x[m.key].measuredAt||x.date||localDate();}}return x});
+ d.equipment=pick('equipment','equipments').map(e=>({...e,id:e.id||uid('EQ')}));d.pm=pick('pm','workOrders','workorders').map(p=>({...p,id:p.id||uid('PM')}));d.faults=pick('faults','failures','cm').map(f=>({...f,id:f.id||uid('CM')}));
+ const mods=pick('modules');if(mods.length)d.modules=mods.map((m,i)=>({...m,id:m.id||'M'+(i+1),status:m.status||'تعیین نشده'}));
+ const procs=pick('processes');if(procs.length)d.processes=procs.map((p,i)=>typeof p==='string'?{id:'P'+i,name:p,status:'تعیین نشده'}:{...p,id:p.id||'P'+i});
+ d.moduleHistory=pick('moduleHistory','module_history');d.activities=pick('activities','activityLog');return d}
+function loadDB(){try{const v=localStorage.getItem(DB_KEY);if(v){const d=JSON.parse(v);return {...emptyDB(),...d}}const old=localStorage.getItem(OLD_KEY);if(old){const d=migrate(JSON.parse(old));localStorage.setItem(DB_KEY,JSON.stringify(d));return d}}catch(e){console.error(e)}return emptyDB()}
+let db=loadDB();function save(){db.version=7;db.updatedAt=new Date().toISOString();localStorage.setItem(DB_KEY,JSON.stringify(db));}
+function activity(text){db.activities.unshift({date:new Date().toISOString(),text});db.activities=db.activities.slice(0,40);save()}
+function fmt(v,d=2){if(v===null||v===undefined||v===''||!Number.isFinite(Number(v)))return 'ثبت نشده';return Number(v).toLocaleString('fa-IR',{maximumFractionDigits:d})}
+function dateFa(s){if(!s)return 'ثبت نشده';const d=new Date(s.length===10?s+'T12:00:00':s);if(Number.isNaN(d.getTime()))return esc(s);return d.toLocaleDateString('fa-IR')}
+function dateTimeFa(s){if(!s)return 'ثبت نشده';const d=new Date(s.length===10?s+'T12:00:00':s);return Number.isNaN(d.getTime())?esc(s):d.toLocaleString('fa-IR',{dateStyle:'short',timeStyle:'short'})}
+function metricValue(r,k){let v=r[k+'Value'];if(v===undefined)v=r[k];if(v&&typeof v==='object')v=v.value;return v===undefined||v===null||v===''?null:Number(v)}
+function metricAt(r,k){return r[k+'At']||r[k+'_at']||r.date||''}
+function latestMetric(k){let a=[];for(const r of db.reports){const v=metricValue(r,k);if(v!==null&&Number.isFinite(v))a.push({value:v,at:metricAt(r,k),report:r})}a.sort((x,y)=>String(y.at).localeCompare(String(x.at)));return a[0]||null}
+function svgMetricIcon(name){const paths={flow:'<path d="M5 18h14M5 12h9M5 6h5"/><path d="m15 8 4 4-4 4"/>',out:'<path d="M5 6h14M10 12h9M14 18h5"/><path d="m15 8 4-2-4-2"/>',cod:'<path d="M12 3c-3 5-7 8-7 12a7 7 0 0 0 14 0c0-4-4-7-7-12Z"/><path d="M9 16c1.5 1.5 4.5 1.5 6 0"/>',bod:'<path d="M12 3c-3 5-7 8-7 12a7 7 0 0 0 14 0c0-4-4-7-7-12Z"/><path d="M8 13h8M10 17h4"/>',tss:'<circle cx="7" cy="8" r="2"/><circle cx="16" cy="7" r="1.5"/><circle cx="12" cy="15" r="2.5"/><circle cx="19" cy="17" r="1.5"/>',do:'<path d="M12 3c-3 5-7 8-7 12a7 7 0 0 0 14 0c0-4-4-7-7-12Z"/><path d="M9 16c1 1 2 1.5 3 1.5"/>',ph:'<path d="M8 4h8M10 4v6l-4 8a3 3 0 0 0 3 4h6a3 3 0 0 0 3-4l-4-8V4"/><path d="M8 16h8"/>',energy:'<path d="m13 2-9 12h7l-1 8 10-13h-7l0-7Z"/>',chlorine:'<path d="M12 3c-3 5-7 8-7 12a7 7 0 0 0 14 0c0-4-4-7-7-12Z"/><path d="M9 14h6m-5 3h4"/>',mlss:'<path d="M4 18h16M6 14h12M8 10h8M10 6h4"/><circle cx="6" cy="5" r="1"/><circle cx="18" cy="8" r="1"/>',temp:'<path d="M14 14.7V5a2 2 0 0 0-4 0v9.7a4 4 0 1 0 4 0Z"/><path d="M12 11v7"/>'};return `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${paths[name]||paths.flow}</svg>`}
+function kpiCard(label,key,unit,icon){const x=latestMetric(key);return `<div class="kpi"><div class="kpi-top"><span>${label}</span><span class="kpi-icon">${svgMetricIcon(icon)}</span></div><div class="kpi-value">${x?fmt(x.value):'—'}</div><div class="kpi-foot">${x?`${unit} · اندازه‌گیری: ${dateTimeFa(x.at)}`:'هنوز داده‌ای ثبت نشده'}</div></div>`}
+function statusClass(s){return s==='در سرویس'||s==='انجام‌شده'||s==='رفع‌شده'||s==='عادی'?'good':s==='نیازمند تعمیر'||s==='بحرانی'||s==='خارج از سرویس'?'bad':s==='در حال انجام'||s==='در دست اقدام'||s==='برنامه‌ریزی‌شده'?'warn':''}
+function statusTag(s){return `<span class="status ${statusClass(s)}">${esc(s||'تعیین نشده')}</span>`}
+function renderMetricInputs(){document.getElementById('reportMetrics').innerHTML=metricDefs.map(m=>`<div class="field"><label>${m.label} (${m.unit})</label><input type="number" step="${m.step}" name="${m.key}Value" placeholder="مقدار"><div class="form-grid" style="grid-template-columns:1fr 1fr;gap:5px"><input aria-label="تاریخ ${m.label}" type="date" name="${m.key}Date" title="تاریخ اندازه‌گیری"><input aria-label="ساعت ${m.label}" type="time" name="${m.key}Time" title="ساعت اندازه‌گیری"></div></div>`).join('')}
+function renderDashboard(){document.getElementById('dashboardKpis').innerHTML=[kpiCard('دبی ورودی','qin','m³/day','flow'),kpiCard('دبی خروجی','qout','m³/day','out'),kpiCard('COD خروجی','codout','mg/L','cod'),kpiCard('BOD₅ خروجی','bodout','mg/L','bod'),kpiCard('TSS خروجی','tss','mg/L','tss'),kpiCard('DO حوض هوادهی','do','mg/L','do'),kpiCard('pH خروجی','ph','-','ph'),kpiCard('انرژی مصرفی','energy','kWh/day','energy')].join('');
+ document.getElementById('maintenanceKpis').innerHTML=[['تجهیزات',db.equipment.length],['PM باز',db.pm.filter(x=>!['انجام‌شده','لغوشده'].includes(x.status)).length],['خرابی باز',db.faults.filter(x=>x.status!=='رفع‌شده').length]].map(x=>`<div class="metric-card"><small>${x[0]}</small><div class="val">${fmt(x[1],0)}</div></div>`).join('');
+ const acts=db.activities.slice(0,5);document.getElementById('recentActivities').innerHTML=acts.length?acts.map(a=>`<div style="padding:7px 0;border-bottom:1px solid var(--line)"><div>${esc(a.text)}</div><small class="muted">${dateTimeFa(a.date)}</small></div>`).join(''):'<div class="empty">فعالیتی ثبت نشده است.</div>';
+ document.getElementById('qualitySnapshot').innerHTML=['codin','codout','bodin','bodout','tssin','tss','phin','ph','chlorine'].map(k=>{const m=metricDefs.find(x=>x.key===k),x=latestMetric(k);return `<div class="metric-card metric-glass"><div class="metric-card-head"><span class="metric-symbol">${svgMetricIcon(({codin:'cod',codout:'cod',bodin:'bod',bodout:'bod',tssin:'tss',tss:'tss',phin:'ph',ph:'ph',chlorine:'chlorine',do:'do',mlss:'mlss',temp:'temp'})[k]||'flow')}</span><strong>${m.label}</strong></div><div class="val">${x?fmt(x.value):'—'}</div><small>${x?m.unit+' · '+dateTimeFa(x.at):'ثبت نشده'}</small></div>`}).join('');
+ document.getElementById('moduleSnapshot').innerHTML=db.modules.map(m=>`<div class="module-card"><div style="display:flex;justify-content:space-between;gap:8px"><h4>${esc(m.name)}</h4>${statusTag(m.status)}</div><p>ظرفیت: ${esc(m.capacity||'ثبت نشده')}</p><p>${esc(m.notes||'بدون توضیحات')}</p></div>`).join('')||'<div class="empty">مدولی ثبت نشده است.</div>';
+ document.getElementById('processSnapshot').innerHTML=db.processes.slice(0,6).map(p=>`<div class="module-card"><b>${esc(p.name)}</b><p>${statusTag(p.status)}</p></div>`).join('');drawLine('dashFlowChart',[{key:'qin',label:'ورودی',color:'#1677c8'},{key:'qout',label:'خروجی',color:'#18a477'}],7);}
+function reportDateFor(r,k){return metricAt(r,k)||r.date||''}
+function chartRecords(keys,days){let rows=[];for(const r of db.reports){for(const k of keys){const v=metricValue(r,k);if(v===null||!Number.isFinite(v))continue;const at=reportDateFor(r,k);rows.push({k,v,at,day:String(at).slice(0,10)})}}if(days!=='all'){const min=new Date();min.setDate(min.getDate()-Number(days));const cut=`${min.getFullYear()}-${String(min.getMonth()+1).padStart(2,'0')}-${String(min.getDate()).padStart(2,'0')}`;rows=rows.filter(x=>x.day>=cut)}return rows.sort((a,b)=>a.day.localeCompare(b.day))}
+function drawLine(target,series,days='all'){const el=document.getElementById(target);if(!el)return;const rows=chartRecords(series.map(s=>s.key),days);if(!rows.length){el.innerHTML='<div class="empty">برای رسم نمودار، ابتدا داده‌های مربوطه را ثبت کنید.</div>';return}const daysArr=[...new Set(rows.map(x=>x.day))].slice(-35),W=700,H=240,L=48,R=15,T=15,B=35,vals=rows.map(x=>x.v),max=Math.max(...vals,1),min=Math.min(0,...vals),range=max-min||1;let svg=`<svg class="chart" viewBox="0 0 ${W} ${H}" role="img" aria-label="نمودار روند">`;for(let i=0;i<5;i++){let y=T+(H-T-B)*i/4,v=max-(range*i/4);svg+=`<line x1="${L}" y1="${y}" x2="${W-R}" y2="${y}" stroke="#e8edf2"/><text x="${L-8}" y="${y+4}" text-anchor="end" font-size="10" fill="#8292a2">${Number(v.toFixed(1))}</text>`}series.forEach(s=>{let pts=daysArr.map((day,i)=>{const found=rows.filter(x=>x.k===s.key&&x.day===day).at(-1);if(!found)return null;const x=L+(W-L-R)*(daysArr.length===1?.5:i/(daysArr.length-1)),y=T+(H-T-B)*(1-(found.v-min)/range);return `${x},${y}`}).filter(Boolean);if(pts.length)svg+=`<polyline points="${pts.join(' ')}" fill="none" stroke="${s.color}" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>`;});daysArr.forEach((d,i)=>{if(i%Math.max(1,Math.ceil(daysArr.length/7))===0||i===daysArr.length-1){const x=L+(W-L-R)*(daysArr.length===1?.5:i/(daysArr.length-1));svg+=`<text x="${x}" y="${H-9}" text-anchor="middle" font-size="10" fill="#8292a2">${d.slice(5)}</text>`}});svg+='</svg>';el.innerHTML=svg}
+function renderAnalytics(){const days=document.getElementById('trendRange').value;drawLine('flowChart',[{key:'qin',color:'#1677c8'},{key:'qout',color:'#18a477'}],days);drawLine('organicChart',[{key:'codout',color:'#9a62c7'},{key:'bodout',color:'#e39a35'}],days);drawLine('tssChart',[{key:'tss',color:'#d35c69'}],days);drawLine('energyChart',[{key:'energy',color:'#279b88'}],days);
+ const q=latestMetric('qin'),e=latestMetric('energy'),ci=latestMetric('codin'),co=latestMetric('codout'),bi=latestMetric('bodin'),bo=latestMetric('bodout');const removal=(a,b)=>a&&b&&a.value>0?((a.value-b.value)/a.value*100):null;const energy=q&&e&&q.value>0?e.value/q.value:null;
+ document.getElementById('analysisKpis').innerHTML=[['راندمان حذف COD',removal(ci,co),'%'],['راندمان حذف BOD₅',removal(bi,bo),'%'],['شدت مصرف انرژی',energy,'kWh/m³'],['تعداد گزارش‌ها',db.reports.length,'گزارش']].map(x=>`<div class="kpi"><div class="kpi-top">${x[0]}</div><div class="kpi-value">${x[1]===null?'—':fmt(x[1],2)}</div><div class="kpi-foot">${x[1]===null?'داده کافی برای محاسبه وجود ندارد':x[2]}</div></div>`).join('');
+ const vals=[['راندمان حذف COD',removal(ci,co),'(COD ورودی − COD خروجی) ÷ COD ورودی × ۱۰۰','نیازمند هر دو مقدار با زمان اندازه‌گیری مشخص'],['راندمان حذف BOD₅',removal(bi,bo),'(BOD ورودی − BOD خروجی) ÷ BOD ورودی × ۱۰۰','نیازمند هر دو مقدار با زمان اندازه‌گیری مشخص'],['شدت مصرف انرژی',energy,'انرژی مصرفی ÷ دبی ورودی','واحد انرژی و دبی باید با دوره زمانی یکسان باشند']];document.getElementById('derivedTable').innerHTML=vals.map(x=>`<tr><td>${x[0]}</td><td>${x[1]===null?'قابل محاسبه نیست':fmt(x[1])}</td><td>${x[2]}</td><td class="muted">${x[3]}</td></tr>`).join('')}
+function renderReports(){const q=(document.getElementById('reportSearch')?.value||'').toLowerCase(),yr=document.getElementById('reportYearFilter')?.value||'';const years=[...new Set(db.reports.map(r=>(r.date||'').slice(0,4)).filter(Boolean))];const yf=document.getElementById('reportYearFilter');if(yf){const cur=yf.value;yf.innerHTML='<option value="">همه تاریخ‌ها</option>'+years.sort().reverse().map(y=>`<option>${y}</option>`).join('');yf.value=cur}
+ const arr=db.reports.filter(r=>(!yr||(r.date||'').startsWith(yr))&&JSON.stringify(r).toLowerCase().includes(q)).sort((a,b)=>(b.date||'').localeCompare(a.date||''));document.getElementById('reportsTable').innerHTML=arr.length?arr.map(r=>`<tr><td>${dateFa(r.date)}</td><td>${esc(r.shift||'—')}</td><td>${esc(r.operator||'—')}</td><td>${fmt(metricValue(r,'qin'),1)}</td><td>${fmt(metricValue(r,'qout'),1)}</td><td>${statusTag(r.operation||'ثبت نشده')}</td><td><div class="actions"><button class="btn small" onclick="viewReport('${r.id}')">جزئیات</button><button class="btn small danger" onclick="deleteItem('reports','${r.id}')">حذف</button></div></td></tr>`).join(''):'<tr><td colspan="7" class="empty">گزارشی ثبت نشده است.</td></tr>'}
+function renderEquipment(){const q=(document.getElementById('equipmentSearch')?.value||'').toLowerCase(),st=document.getElementById('equipmentStatus')?.value||'',ty=document.getElementById('equipmentType')?.value||'';const types=[...new Set(db.equipment.map(e=>e.type).filter(Boolean))];const sel=document.getElementById('equipmentType');if(sel){let old=sel.value;sel.innerHTML='<option value="">همه گروه‌ها</option>'+types.map(t=>`<option>${esc(t)}</option>`).join('');sel.value=old}
+ const a=db.equipment.filter(e=>(!st||e.status===st)&&(!ty||e.type===ty)&&JSON.stringify(e).toLowerCase().includes(q));document.getElementById('equipmentTable').innerHTML=a.length?a.map(e=>`<tr><td>${esc(e.code||'—')}</td><td>${esc(e.name)}</td><td>${esc(e.type||'—')}</td><td>${esc(e.location||'—')}</td><td>${statusTag(e.status)}</td><td>${dateFa(e.lastService)}</td><td><div class="actions"><button class="btn small" onclick="openEquipmentModal('${e.id}')">ویرایش</button><button class="btn small danger" onclick="deleteItem('equipment','${e.id}')">حذف</button></div></td></tr>`).join(''):'<tr><td colspan="7" class="empty">تجهیزی یافت نشد.</td></tr>'}
+function renderPM(){const open=db.pm.filter(x=>!['انجام‌شده','لغوشده'].includes(x.status)).length,done=db.pm.filter(x=>x.status==='انجام‌شده').length,cost=db.pm.reduce((s,x)=>s+(Number(x.cost)||0),0);document.getElementById('pmKpis').innerHTML=[['کل دستورکارها',db.pm.length],['باز / در جریان',open],['انجام‌شده',done],['هزینه ثبت‌شده',fmt(cost,0)+' ریال']].map(x=>`<div class="kpi"><div class="kpi-top">${x[0]}</div><div class="kpi-value">${x[1]}</div></div>`).join('');const q=(document.getElementById('pmSearch')?.value||'').toLowerCase(),st=document.getElementById('pmStatus')?.value||'';const a=db.pm.filter(p=>(!st||p.status===st)&&JSON.stringify(p).toLowerCase().includes(q));document.getElementById('pmTable').innerHTML=a.length?a.map(p=>`<tr><td>${esc(p.code||p.id)}</td><td>${esc(p.equipment||'—')}</td><td>${esc(p.kind||'—')}</td><td>${dateFa(p.date)}</td><td>${esc(p.owner||'—')}</td><td>${statusTag(p.status)}</td><td>${fmt(p.cost,0)}</td><td><div class="actions"><button class="btn small" onclick="openPMModal('${p.id}')">ویرایش</button><button class="btn small danger" onclick="deleteItem('pm','${p.id}')">حذف</button></div></td></tr>`).join(''):'<tr><td colspan="8" class="empty">دستورکاری ثبت نشده است.</td></tr>'}
+function renderFaults(){const open=db.faults.filter(x=>x.status!=='رفع‌شده').length,critical=db.faults.filter(x=>x.severity==='بحرانی'&&x.status!=='رفع‌شده').length,down=db.faults.reduce((s,x)=>s+(Number(x.downHours)||0),0);document.getElementById('faultKpis').innerHTML=[['کل رخدادها',db.faults.length],['خرابی باز',open],['خرابی بحرانی باز',critical],['مجموع توقف (ساعت)',fmt(down,1)]].map(x=>`<div class="kpi"><div class="kpi-top">${x[0]}</div><div class="kpi-value">${x[1]}</div></div>`).join('');const q=(document.getElementById('faultSearch')?.value||'').toLowerCase(),st=document.getElementById('faultStatus')?.value||'',sv=document.getElementById('faultSeverity')?.value||'';const a=db.faults.filter(f=>(!st||f.status===st)&&(!sv||f.severity===sv)&&JSON.stringify(f).toLowerCase().includes(q));document.getElementById('faultTable').innerHTML=a.length?a.map(f=>`<tr><td>${esc(f.code||f.id)}</td><td>${dateFa(f.date)}</td><td>${esc(f.equipment||'—')}</td><td>${esc(f.description||'—')}</td><td>${statusTag(f.severity)}</td><td>${statusTag(f.status)}</td><td>${fmt(f.downHours,1)}</td><td><div class="actions"><button class="btn small" onclick="openFaultModal('${f.id}')">ویرایش</button><button class="btn small danger" onclick="deleteItem('faults','${f.id}')">حذف</button></div></td></tr>`).join(''):'<tr><td colspan="8" class="empty">رخدادی ثبت نشده است.</td></tr>'}
+function renderModules(){document.getElementById('moduleList').innerHTML=db.modules.map(m=>`<div class="module-card"><div style="display:flex;justify-content:space-between;align-items:center"><h4>${esc(m.name)}</h4>${statusTag(m.status)}</div><p>شناسه: ${esc(m.id)}</p><p>ظرفیت اسمی: ${esc(m.capacity||'ثبت نشده')}</p><p>${esc(m.notes||'')}</p><button class="btn small" onclick="openModuleModal('${m.id}')">ویرایش وضعیت</button></div>`).join('')||'<div class="empty">مدولی ثبت نشده است.</div>';document.getElementById('moduleHistoryTable').innerHTML=db.moduleHistory.length?db.moduleHistory.slice().reverse().map(h=>`<tr><td>${dateTimeFa(h.date)}</td><td>${esc(h.module)}</td><td>${esc(h.from||'—')}</td><td>${esc(h.to)}</td><td>${esc(h.notes||'—')}</td></tr>`).join(''):'<tr><td colspan="5" class="empty">تاریخچه‌ای ثبت نشده است.</td></tr>'}
+function renderProcesses(){document.getElementById('processList').innerHTML=db.processes.map(p=>`<div class="module-card"><div style="display:flex;justify-content:space-between;gap:8px"><h4>${esc(p.name)}</h4>${statusTag(p.status)}</div><p>${esc(p.description||'توضیحی ثبت نشده')}</p><button class="btn small" onclick="openProcessModal('${p.id}')">ویرایش</button> <button class="btn small danger" onclick="deleteItem('processes','${p.id}')">حذف</button></div>`).join('')}
+function renderAll(){renderDashboard();renderReports();renderAnalytics();renderEquipment();renderPM();renderFaults();renderModules();renderProcesses();document.getElementById('dbInfo').innerHTML=`<div>نسخه ساختار داده: <b>۷</b></div><div>تعداد گزارش‌ها: <b>${db.reports.length}</b></div><div>تعداد تجهیزات: <b>${db.equipment.length}</b></div><div>دستورکارهای PM: <b>${db.pm.length}</b></div><div>رخدادهای CM: <b>${db.faults.length}</b></div><div>آخرین ذخیره: <b>${dateTimeFa(db.updatedAt)||'هنوز ذخیره نشده'}</b></div><div>محل ذخیره: <b>حافظه محلی همین مرورگر</b></div>`}
+function navigate(page){document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));document.getElementById('page-'+page)?.classList.add('active');document.querySelectorAll('.nav button').forEach(x=>x.classList.toggle('active',x.dataset.page===page));const b=document.querySelector(`.nav button[data-page="${page}"]`);document.getElementById('topTitle').textContent=b?b.textContent.trim():'AI Wastewater OS';document.getElementById('sidebar').classList.remove('open');if(page==='analytics')renderAnalytics()}
+document.querySelectorAll('.nav button').forEach(b=>b.addEventListener('click',()=>navigate(b.dataset.page)));document.getElementById('menuBtn').onclick=()=>document.getElementById('sidebar').classList.toggle('open');
+function showModal(title,body,saveFn,label='ذخیره'){document.getElementById('modalTitle').textContent=title;document.getElementById('modalBody').innerHTML=body;document.getElementById('modalFoot').innerHTML=`<button class="btn" onclick="closeModal()">انصراف</button><button class="btn primary" id="modalSave">${label}</button>`;document.getElementById('modalBack').classList.add('show');document.getElementById('modalSave').onclick=saveFn}
+function closeModal(){document.getElementById('modalBack').classList.remove('show')}
+function val(id){return document.getElementById(id)?.value?.trim()||''}
+function field(label,id,value='',type='text',extra=''){return `<div class="field"><label>${label}</label><input id="${id}" type="${type}" value="${esc(value)}" ${extra}></div>`}
+function openEquipmentModal(id=''){const e=db.equipment.find(x=>x.id===id)||{};showModal(id?'ویرایش تجهیز':'ثبت تجهیز',`<div class="form-grid">${field('کد تجهیز','eCode',e.code)}${field('نام تجهیز','eName',e.name)}${field('گروه تجهیز','eType',e.type)}${field('واحد / محل نصب','eLocation',e.location)}<div class="field"><label>وضعیت</label><select id="eStatus">${['در سرویس','رزرو','خارج از سرویس','نیازمند تعمیر','تعیین نشده'].map(s=>`<option ${e.status===s?'selected':''}>${s}</option>`).join('')}</select></div>${field('سازنده / مدل','eModel',e.model)}${field('تاریخ آخرین سرویس','eLast',e.lastService,'date')}${field('تناوب PM (روز)','eInterval',e.interval,'number')}${field('توضیحات','eNotes',e.notes)}</div>`,()=>{if(!val('eName'))return alert('نام تجهیز الزامی است.');const obj={id:e.id||uid('EQ'),code:val('eCode'),name:val('eName'),type:val('eType'),location:val('eLocation'),status:val('eStatus'),model:val('eModel'),lastService:val('eLast'),interval:val('eInterval'),notes:val('eNotes')};if(id)Object.assign(e,obj);else db.equipment.push(obj);save();activity((id?'ویرایش':'ثبت')+' تجهیز '+obj.name);closeModal();renderAll()})}
+function equipmentNames(){return db.equipment.map(e=>e.name)}
+function openPMModal(id=''){const p=db.pm.find(x=>x.id===id)||{};showModal(id?'ویرایش دستورکار PM':'دستورکار جدید PM',`<div class="form-grid">${field('شماره دستورکار','pCode',p.code||uid('PM'))}<div class="field"><label>تجهیز</label><select id="pEquip"><option value="">انتخاب تجهیز</option>${equipmentNames().map(n=>`<option ${p.equipment===n?'selected':''}>${esc(n)}</option>`).join('')}</select></div>${field('نوع فعالیت','pKind',p.kind||'بازدید و سرویس')}${field('تاریخ برنامه','pDate',p.date||localDate(),'date')}${field('مسئول اجرا','pOwner',p.owner)}<div class="field"><label>وضعیت</label><select id="pStatus">${['برنامه‌ریزی‌شده','در حال انجام','انجام‌شده','لغوشده'].map(s=>`<option ${p.status===s?'selected':''}>${s}</option>`).join('')}</select></div>${field('هزینه (ریال)','pCost',p.cost||'','number')}${field('مدت کار (ساعت)','pDuration',p.duration||'','number')}${field('شناسه فرم / مرجع','pRef',p.reference)}<div class="field" style="grid-column:1/-1"><label>شرح کار / چک‌لیست / نتیجه</label><textarea id="pDesc">${esc(p.description||'')}</textarea></div></div>`,()=>{const obj={id:p.id||uid('PM'),code:val('pCode'),equipment:val('pEquip'),kind:val('pKind'),date:val('pDate'),owner:val('pOwner'),status:val('pStatus'),cost:val('pCost'),duration:val('pDuration'),reference:val('pRef'),description:val('pDesc')};if(id)Object.assign(p,obj);else db.pm.unshift(obj);save();activity((id?'ویرایش':'ایجاد')+' دستورکار PM '+obj.code);closeModal();renderAll()})}
+function openFaultModal(id=''){const f=db.faults.find(x=>x.id===id)||{};showModal(id?'ویرایش خرابی':'ثبت خرابی / دستورکار CM',`<div class="form-grid">${field('کد رخداد','fCode',f.code||uid('CM'))}${field('تاریخ رخداد','fDate',f.date||localDate(),'date')}<div class="field"><label>تجهیز</label><select id="fEquip"><option value="">انتخاب تجهیز</option>${equipmentNames().map(n=>`<option ${f.equipment===n?'selected':''}>${esc(n)}</option>`).join('')}</select></div><div class="field"><label>اولویت</label><select id="fSeverity">${['بحرانی','زیاد','متوسط','کم'].map(s=>`<option ${f.severity===s?'selected':''}>${s}</option>`).join('')}</select></div><div class="field"><label>وضعیت</label><select id="fStatus">${['باز','در دست اقدام','رفع‌شده'].map(s=>`<option ${f.status===s?'selected':''}>${s}</option>`).join('')}</select></div>${field('مدت توقف (ساعت)','fDown',f.downHours||'','number')}${field('گزارش‌دهنده','fReporter',f.reporter)}${field('علت احتمالی','fCause',f.cause)}<div class="field" style="grid-column:1/-1"><label>شرح خرابی</label><textarea id="fDesc">${esc(f.description||'')}</textarea></div><div class="field" style="grid-column:1/-1"><label>اقدام اصلاحی / نتیجه</label><textarea id="fAction">${esc(f.action||'')}</textarea></div></div>`,()=>{const obj={id:f.id||uid('CM'),code:val('fCode'),date:val('fDate'),equipment:val('fEquip'),severity:val('fSeverity'),status:val('fStatus'),downHours:val('fDown'),reporter:val('fReporter'),cause:val('fCause'),description:val('fDesc'),action:val('fAction')};if(id)Object.assign(f,obj);else db.faults.unshift(obj);save();activity((id?'ویرایش':'ثبت')+' خرابی '+obj.code);closeModal();renderAll()})}
+function openModuleModal(id=''){const m=db.modules.find(x=>x.id===id)||{};showModal(id?'ویرایش مدول':'افزودن مدول',`<div class="form-grid">${field('شناسه','mId',m.id||uid('M'))}${field('نام مدول','mName',m.name)}${field('ظرفیت اسمی','mCapacity',m.capacity)}<div class="field"><label>وضعیت</label><select id="mStatus">${['تعیین نشده','در مدار','آماده‌به‌کار','خارج از مدار','در تعمیرات','خشک‌سازی'].map(s=>`<option ${m.status===s?'selected':''}>${s}</option>`).join('')}</select></div><div class="field" style="grid-column:1/-1"><label>توضیحات</label><textarea id="mNotes">${esc(m.notes||'')}</textarea></div></div>`,()=>{if(!val('mName'))return alert('نام مدول الزامی است.');const obj={id:m.id||val('mId'),name:val('mName'),capacity:val('mCapacity'),status:val('mStatus'),notes:val('mNotes')};if(id){db.moduleHistory.push({date:new Date().toISOString(),module:m.name,from:m.status,to:obj.status,notes:obj.notes});Object.assign(m,obj)}else db.modules.push(obj);save();activity('به‌روزرسانی وضعیت '+obj.name);closeModal();renderAll()})}
+function openProcessModal(id=''){const p=db.processes.find(x=>x.id===id)||{};showModal(id?'ویرایش واحد فرایندی':'افزودن واحد فرایندی',`<div class="form-grid">${field('نام واحد','prName',p.name)}<div class="field"><label>وضعیت</label><select id="prStatus">${['تعیین نشده','در سرویس','محدودیت بهره‌برداری','خارج از سرویس','نیازمند بررسی'].map(s=>`<option ${p.status===s?'selected':''}>${s}</option>`).join('')}</select></div><div class="field" style="grid-column:1/-1"><label>شرح و مشخصات</label><textarea id="prDesc">${esc(p.description||'')}</textarea></div></div>`,()=>{if(!val('prName'))return alert('نام واحد الزامی است.');const obj={id:p.id||uid('PR'),name:val('prName'),status:val('prStatus'),description:val('prDesc')};if(id)Object.assign(p,obj);else db.processes.push(obj);save();closeModal();renderAll()})}
+function deleteItem(collection,id){if(!confirm('از حذف این رکورد مطمئن هستید؟'))return;db[collection]=db[collection].filter(x=>x.id!==id);save();activity('حذف رکورد از '+collection);renderAll()}
+function viewReport(id){const r=db.reports.find(x=>x.id===id);if(!r)return;const rows=metricDefs.map(m=>`<tr><td>${m.label}</td><td>${fmt(metricValue(r,m.key))} ${m.unit}</td><td>${dateTimeFa(metricAt(r,m.key))}</td></tr>`).join('');const photos=Array.isArray(r.photos)?r.photos:[];const gallery=photos.length?`<h4>مستندات تصویری (${photos.length})</h4><div class="saved-photo-grid">${photos.map((p,i)=>`<figure><img src="${p.data}" alt="مستند گزارش ${i+1}" onclick="openPhoto('${r.id}',${i})"><figcaption>${esc(p.name||'تصویر '+(i+1))}</figcaption></figure>`).join('')}</div>`:'<p class="muted">برای این گزارش تصویر مستندی ثبت نشده است.</p>';showModal('جزئیات گزارش روزانه',`<p>تاریخ گزارش: <b>${dateFa(r.date)}</b> · شیفت: ${esc(r.shift||'—')} · ثبت‌کننده: ${esc(r.operator||'—')}</p><div class="table-wrap"><table><thead><tr><th>پارامتر</th><th>مقدار</th><th>زمان اندازه‌گیری</th></tr></thead><tbody>${rows}</tbody></table></div><p>توضیحات: ${esc(r.notes||'—')}</p>${gallery}`,closeModal,'بستن')}
+async function compressPhoto(file){return new Promise((resolve,reject)=>{const reader=new FileReader();reader.onerror=()=>reject(new Error('خواندن تصویر ناموفق بود'));reader.onload=()=>{const img=new Image();img.onerror=()=>reject(new Error('فایل تصویر معتبر نیست'));img.onload=()=>{const max=1600,scale=Math.min(1,max/Math.max(img.width,img.height)),canvas=document.createElement('canvas');canvas.width=Math.round(img.width*scale);canvas.height=Math.round(img.height*scale);const ctx=canvas.getContext('2d');ctx.drawImage(img,0,0,canvas.width,canvas.height);resolve({name:file.name,data:canvas.toDataURL('image/jpeg',.78)})};img.src=reader.result};reader.readAsDataURL(file)})}
+document.getElementById('reportPhotos').addEventListener('change',e=>{const files=[...e.target.files].slice(0,6),box=document.getElementById('reportPhotoPreview');box.innerHTML=files.map(f=>`<div class="photo-pending"><span>▧</span>${esc(f.name)}</div>`).join('');if(e.target.files.length>6)alert('در هر گزارش حداکثر ۶ تصویر انتخاب کنید. فقط ۶ تصویر اول در نظر گرفته می‌شود.')});
+async function openPhoto(reportId,index){const r=db.reports.find(x=>x.id===reportId),p=r?.photos?.[index];if(!p)return;showModal(p.name||'تصویر مستند',`<img class="photo-large" src="${p.data}" alt="تصویر مستند گزارش">`,closeModal,'بستن')}
+document.getElementById('reportForm').addEventListener('submit',async e=>{e.preventDefault();const form=e.target,fd=new FormData(form),files=[...document.getElementById('reportPhotos').files].slice(0,6),submit=form.querySelector('button[type=submit]');submit.disabled=true;submit.textContent='در حال فشرده‌سازی تصاویر…';try{const r={id:uid('RPT'),date:fd.get('date'),shift:fd.get('shift'),operator:fd.get('operator'),operation:fd.get('operation'),pumps:fd.get('pumps'),blowers:fd.get('blowers'),aerators:fd.get('aerators'),hypo:fd.get('hypo'),polymer:fd.get('polymer'),notes:fd.get('notes'),photos:await Promise.all(files.map(compressPhoto))};for(const m of metricDefs){const raw=String(fd.get(m.key+'Value')||'').trim();r[m.key+'Value']=raw===''?null:Number(raw);const dt=fd.get(m.key+'Date')||r.date,tm=fd.get(m.key+'Time')||'12:00';r[m.key+'At']=raw===''?'':dt+'T'+tm+':00'}db.reports.unshift(r);save();activity('ثبت گزارش روزانه '+r.date+' با '+r.photos.length+' مستند تصویری');form.reset();document.getElementById('reportPhotoPreview').innerHTML='';document.getElementById('reportDate').value=localDate();renderAll();alert('گزارش و '+r.photos.length+' تصویر مستند با موفقیت ذخیره شد.')}catch(err){alert('ذخیره گزارش انجام نشد: '+err.message)}finally{submit.disabled=false;submit.textContent='ذخیره گزارش'}});
+function download(name,content,type){const blob=new Blob([content],{type}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=name;document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(url)}
+function backupJSON(){const pack={app:'AI Wastewater OS',version:7,exportedAt:new Date().toISOString(),database:db};download('AI-Wastewater-OS-Marvdasht-backup-'+localDate()+'.json',JSON.stringify(pack,null,2),'application/json;charset=utf-8')}
+function restoreJSON(){const f=document.getElementById('restoreFile').files[0];if(!f)return alert('ابتدا فایل JSON را انتخاب کنید.');const rd=new FileReader();rd.onload=()=>{try{const obj=JSON.parse(rd.result),raw=obj.database||obj;if(!raw||typeof raw!=='object'||!Array.isArray(raw.reports)&&!Array.isArray(raw.equipment))throw new Error('ساختار فایل معتبر نیست');if(!confirm('بازیابی، اطلاعات فعلی را جایگزین می‌کند. ادامه می‌دهید؟'))return;db=raw.version===7?{...emptyDB(),...raw}:migrate(raw);save();renderAll();alert('بازیابی اطلاعات انجام شد.')}catch(err){alert('خطا در بازیابی: '+err.message)}};rd.readAsText(f)}
+function resetData(){if(!confirm('تمام اطلاعات محلی این سامانه حذف شود؟ این عملیات قابل بازگشت نیست. ابتدا نسخه پشتیبان بگیرید.'))return;db=emptyDB();save();renderAll();alert('داده‌ها بازنشانی شدند.')}
+function csvCell(v){let s=String(v??'');return '"'+s.replace(/"/g,'""')+'"'}function exportReportsCSV(){const headers=['تاریخ گزارش','شیفت','ثبت‌کننده',...metricDefs.map(m=>m.label+' ('+m.unit+')'),...metricDefs.map(m=>m.label+' - زمان اندازه‌گیری'),'وضعیت','توضیحات'];const rows=db.reports.map(r=>[r.date,r.shift,r.operator,...metricDefs.map(m=>metricValue(r,m.key)),...metricDefs.map(m=>metricAt(r,m.key)),r.operation,r.notes]);const csv='\uFEFF'+[headers,...rows].map(row=>row.map(csvCell).join(',')).join('\r\n');download('WWTP-reports-'+localDate()+'.csv',csv,'text/csv;charset=utf-8')}
+function exportAllCSV(){const all=[['نوع','شناسه','عنوان','تاریخ','وضعیت','شرح'],...db.equipment.map(x=>['تجهیز',x.id,x.name,x.lastService,x.status,x.notes]),...db.pm.map(x=>['PM',x.id,x.equipment,x.date,x.status,x.description]),...db.faults.map(x=>['CM',x.id,x.equipment,x.date,x.status,x.description])];download('WWTP-registers-'+localDate()+'.csv','\uFEFF'+all.map(r=>r.map(csvCell).join(',')).join('\r\n'),'text/csv;charset=utf-8')}
+// UI events
+['reportSearch','reportYearFilter'].forEach(id=>document.getElementById(id).addEventListener('input',renderReports));['equipmentSearch','equipmentStatus','equipmentType'].forEach(id=>document.getElementById(id).addEventListener('input',renderEquipment));['pmSearch','pmStatus'].forEach(id=>document.getElementById(id).addEventListener('input',renderPM));['faultSearch','faultStatus','faultSeverity'].forEach(id=>document.getElementById(id).addEventListener('input',renderFaults));document.getElementById('trendRange').addEventListener('change',renderAnalytics);
+document.getElementById('reportDate').value=localDate();document.getElementById('todayLabel').textContent=new Date().toLocaleDateString('fa-IR');renderMetricInputs();renderAll();
+// PWA install support: service worker is enabled only on HTTPS or localhost.
+let deferredInstallPrompt=null;const installBtn=document.getElementById('installAppBtn');
+window.addEventListener('beforeinstallprompt',event=>{event.preventDefault();deferredInstallPrompt=event;installBtn.hidden=false});
+installBtn.addEventListener('click',async()=>{if(!deferredInstallPrompt){alert('برای نصب، برنامه را از نشانی HTTPS در Chrome باز کنید و از منوی مرورگر گزینه Install app یا Add to Home screen را بزنید.');return;}deferredInstallPrompt.prompt();await deferredInstallPrompt.userChoice;deferredInstallPrompt=null;installBtn.hidden=true});
+window.addEventListener('appinstalled',()=>{installBtn.hidden=true;activity('برنامه روی دستگاه نصب شد')});
+if('serviceWorker' in navigator && (location.protocol==='https:' || location.hostname==='localhost')){window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(err=>console.warn('Service worker registration failed',err)));}
+</script></body></html>
