@@ -1,0 +1,285 @@
+
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#071522">
+<title>AI Wastewater OS | شبکه فاضلاب مرودشت</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&display=swap');
+:root{--bg:#071522;--panel:rgba(20,43,62,.78);--line:#ffffff20;--txt:#eaf5ff;--muted:#9bb2c5;--cyan:#54d7e8;--green:#54d6a0;--orange:#ffbd69;--red:#ff7185}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(ellipse at 15% 0%,#123956,transparent 45%),linear-gradient(145deg,#06111d,#0a2032 60%,#071522);color:var(--txt);font-family:Vazirmatn,Tahoma,sans-serif;min-height:100vh}
+header{padding:22px 16px}
+main{max-width:1200px;margin:auto;padding:0 14px 40px}
+.top{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:12px}
+.logo{width:50px;height:50px;border-radius:17px;background:linear-gradient(145deg,#48d5e7,#3976c8);display:grid;place-items:center;font-size:26px;box-shadow:0 8px 30px #42cce544}
+h1{font-size:19px;margin:0}.sub{color:var(--muted);font-size:12px}
+.pill{border:1px solid var(--line);padding:7px 12px;border-radius:30px;color:#aeeef2;font-size:12px}
+.hero{padding:18px;border:1px solid var(--line);border-radius:22px;background:linear-gradient(120deg,#173b55aa,#10283bbb);margin-bottom:15px}
+.hero h2{margin:0 0 5px;font-size:20px}.hero p{margin:0;color:var(--muted);font-size:13px}
+.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.card,.panel{background:var(--panel);border:1px solid var(--line);border-radius:19px;padding:15px;box-shadow:inset 0 1px #ffffff0c,0 12px 28px #0002;backdrop-filter:blur(16px)}
+.kpi{min-height:110px}.kpi .ico{font-size:23px}.kpi strong{display:block;font-size:25px;margin:3px 0}.kpi span{font-size:12px;color:var(--muted)}
+nav{display:flex;gap:8px;overflow:auto;padding:13px 0}
+button,.btn{border:1px solid var(--line);background:#ffffff0a;color:var(--txt);padding:9px 13px;border-radius:12px;font:inherit;font-size:12px;cursor:pointer;white-space:nowrap}
+button.active,.primary{background:linear-gradient(120deg,#167c9c,#285ca2);border-color:#51d4e5aa}
+.section{display:none}.section.active{display:block}
+h3{font-size:17px;margin:5px 0 14px}
+.muted{color:var(--muted);font-size:12px}
+.actions{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
+.formgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+label{font-size:12px;color:#b9cedd;display:block}
+input,select,textarea{width:100%;margin-top:5px;background:#081a29;color:var(--txt);border:1px solid #45617788;border-radius:10px;padding:10px;font:inherit;font-size:13px}
+textarea{min-height:85px}
+.modulegrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.module span{font-size:24px}.module b{display:block;margin:7px 0}
+.tablewrap{overflow:auto}
+table{width:100%;border-collapse:collapse;font-size:12px;min-width:700px}
+th,td{padding:10px 8px;border-bottom:1px solid var(--line);text-align:right}
+th{color:#8ee4ed}
+.tag{padding:3px 8px;border-radius:20px;background:#54d6a022;color:#7ee4b8}
+.warn{background:#ffbd6922;color:var(--orange)}
+.danger{background:#ff718522;color:#ff9aaa}
+.notice{border-right:3px solid var(--orange);background:#ffbd6910;padding:12px;border-radius:10px;color:#f6d4a5;font-size:12px;margin:12px 0}
+footer{text-align:center;color:#7792a7;font-size:11px;padding:25px}
+@media(max-width:800px){.grid{grid-template-columns:repeat(2,1fr)}.formgrid{grid-template-columns:repeat(2,1fr)}.modulegrid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:480px){.formgrid{grid-template-columns:1fr}.card,.panel{padding:12px}.kpi strong{font-size:22px}}
+</style>
+</head>
+<body>
+<header>
+<div class="top">
+<div class="brand"><div class="logo">💧</div><div>
+<h1>AI Wastewater OS</h1>
+<div class="sub">سامانه هوشمند بهره‌برداری شبکه فاضلاب مرودشت</div>
+</div></div>
+<span class="pill">● سامانه عملیاتی شبکه</span>
+</div>
+</header>
+<main>
+<div class="hero">
+<h2>داشبورد مدیریت و پایش شبکه جمع‌آوری فاضلاب</h2>
+<p>مدیریت عملیات میدانی، کنترل عملکرد اکیپ‌ها، پایش دارایی‌ها و تحلیل شاخص‌های بهره‌برداری</p>
+</div>
+
+<div class="grid">
+<div class="card kpi"><div class="ico">🧰</div><strong id="kTotal">۰</strong><span>کل عملیات ثبت‌شده</span></div>
+<div class="card kpi"><div class="ico">🚧</div><strong id="kBlock">۰</strong><span>رفع انسداد و حوادث</span></div>
+<div class="card kpi"><div class="ico">🚿</div><strong id="kWash">۰</strong><span>طول شست‌وشو (متر)</span></div>
+<div class="card kpi"><div class="ico">🕳️</div><strong id="kMan">۰</strong><span>منهول‌های مریی‌سازی</span></div>
+<div class="card kpi"><div class="ico">📹</div><strong id="kCctv">۰</strong><span>بازرسی و ویدئومتری</span></div>
+<div class="card kpi"><div class="ico">🛠️</div><strong id="kFollow">۰</strong><span>موارد نیازمند پیگیری</span></div>
+<div class="card kpi"><div class="ico">🏗️</div><strong id="kDev">۰</strong><span>طول توسعه و اصلاح (متر)</span></div>
+<div class="card kpi"><div class="ico">📅</div><strong id="kMonth">۰</strong><span>عملیات ماه جاری</span></div>
+</div>
+
+<nav>
+<button class="active" data-tab="dashboard">🏠 داشبورد</button>
+<button data-tab="register">➕ ثبت عملیات</button>
+<button data-tab="log">📋 دفتر عملیات</button>
+<button data-tab="modules">🧩 ماژول‌ها</button>
+<button data-tab="reports">📊 گزارش‌ها</button>
+<button data-tab="backup">💾 پشتیبان‌گیری</button>
+</nav>
+
+<section class="section active" id="dashboard">
+<div class="panel">
+<h3>⚡ دسترسی سریع به عملیات</h3>
+<div class="actions">
+<button class="primary" data-type="رفع انسداد">🚧 رفع انسداد</button>
+<button data-type="شست‌وشوی شبکه">🚿 شست‌وشو</button>
+<button data-type="مریی‌سازی منهول">🕳️ مریی‌سازی</button>
+<button data-type="ویدئومتری">📹 ویدئومتری</button>
+<button data-type="بازرسی منهول">🔍 بازرسی منهول</button>
+<button data-type="حادثه شبکه">⚠️ حادثه شبکه</button>
+<button data-type="توسعه/اصلاح">🏗️ توسعه و اصلاح</button>
+<button data-type="عملیات HSE">🦺 عملیات HSE</button>
+</div>
+</div>
+<div class="modulegrid" style="margin-top:12px">
+<div class="card module"><span>🚧</span><b>رفع انسداد و حوادث</b><small class="muted">ثبت علت، زمان پاسخ و اقدام اصلاحی</small></div>
+<div class="card module"><span>🚿</span><b>شست‌وشو و لایروبی</b><small class="muted">ثبت طول، قطر و رسوب مکش‌شده</small></div>
+<div class="card module"><span>🕳️</span><b>منهول و مریی‌سازی</b><small class="muted">بازرسی و همسطح‌سازی</small></div>
+<div class="card module"><span>📹</span><b>ویدئومتری و CCTV</b><small class="muted">ثبت کد عیب و مستندات تصویری</small></div>
+<div class="card module"><span>🗺️</span><b>دارایی‌ها و GIS</b><small class="muted">شناسه خطوط، منهول و مختصات</small></div>
+<div class="card module"><span>⚙️</span><b>نگهداری و تعمیرات</b><small class="muted">PM و تعمیرات اصلاحی</small></div>
+<div class="card module"><span>🦺</span><b>ایمنی و HSE</b><small class="muted">ارزیابی ریسک و کنترل ایمنی</small></div>
+<div class="card module"><span>🏗️</span><b>توسعه و بازسازی</b><small class="muted">ثبت پروژه و پیشرفت اجرایی</small></div>
+<div class="card module"><span>🚛</span><b>اکیپ‌ها و ناوگان</b><small class="muted">نیرو، خودرو و تجهیزات</small></div>
+</div>
+</section>
+
+<section class="section" id="register">
+<div class="panel">
+<h3>➕ فرم جامع ثبت عملیات شبکه</h3>
+<p class="muted">اطلاعات در حافظه همین مرورگر ذخیره می‌شود.</p>
+<form id="opForm">
+<div class="formgrid">
+<label>تاریخ عملیات<input name="date" type="date" required></label>
+<label>نوع عملیات<select name="type" id="opType" required>
+<option value="">انتخاب کنید</option>
+<option>رفع انسداد</option><option>حادثه شبکه</option><option>شست‌وشوی شبکه</option><option>لایروبی</option><option>مریی‌سازی منهول</option><option>همسطح‌سازی منهول</option><option>بازرسی منهول</option><option>ویدئومتری</option><option>PM</option><option>CM / تعمیرات</option><option>توسعه/اصلاح</option><option>عملیات HSE</option><option>سایر</option>
+</select></label>
+<label>وضعیت<select name="status"><option>انجام‌شده</option><option>در حال انجام</option><option>نیازمند پیگیری</option><option>ارجاع به پیمانکار</option></select></label>
+<label>محله / محدوده<input name="area"></label>
+<label>شناسه منهول / قطعه خط<input name="asset"></label>
+<label>قطر لوله (میلی‌متر)<input name="diameter" type="number" min="0"></label>
+<label>طول عملیات (متر)<input name="length" type="number" min="0" step="0.1"></label>
+<label>جنس لوله<select name="material"><option>نامشخص</option><option>بتنی</option><option>پلی‌اتیلن</option><option>PVC</option><option>آزبست سیمان</option><option>سایر</option></select></label>
+<label>تعداد منهول<input name="manholes" type="number" min="0"></label>
+<label>اکیپ / سرپرست<input name="crew"></label>
+<label>خودرو / تجهیز<input name="vehicle"></label>
+<label>حجم رسوب یا مکش (مترمکعب)<input name="volume" type="number" min="0" step="0.1"></label>
+<label>علت / نوع عیب<input name="cause"></label>
+<label>اولویت<select name="priority"><option>عادی</option><option>متوسط</option><option>بالا</option><option>بحرانی</option></select></label>
+<label>زمان پاسخ (دقیقه)<input name="response" type="number" min="0"></label>
+<label>مختصات UTM / موقعیت<input name="location"></label>
+<label>کد عیب CCTV<input name="defect"></label>
+<label>مسئول پیگیری<input name="owner"></label>
+<label>مهلت پیگیری<input name="deadline" type="date"></label>
+<label>شماره درخواست / پیمانکار<input name="ticket"></label>
+<label>هزینه (ریال)<input name="cost" type="number" min="0"></label>
+<label>شروع عملیات<input name="start" type="time"></label>
+<label>پایان عملیات<input name="end" type="time"></label>
+<label>شناسه عکس / فیلم<input name="media"></label>
+<label style="grid-column:1/-1">شرح عملیات و اقدامات اصلاحی<textarea name="description"></textarea></label>
+</div>
+<div class="actions"><button class="primary" type="submit">💾 ذخیره عملیات</button><button type="reset">پاک‌کردن فرم</button></div>
+</form>
+</div>
+<div class="notice">⚠️ ورود به منهول فقط با مجوز کار، گازسنجی و پایش مستمر، تهویه، مراقب بیرون، تجهیزات حفاظت فردی و طرح نجات مصوب مجاز است. این سامانه مجوز ورود صادر نمی‌کند.</div>
+</section>
+
+<section class="section" id="log">
+<div class="panel">
+<h3>📋 دفتر ثبت عملیات</h3>
+<div class="formgrid">
+<label>جست‌وجو<input id="search" placeholder="نوع، محله، شناسه یا اکیپ"></label>
+<label>فیلتر نوع<select id="filterType"><option value="">همه عملیات</option></select></label>
+<label>فیلتر وضعیت<select id="filterStatus"><option value="">همه وضعیت‌ها</option><option>انجام‌شده</option><option>در حال انجام</option><option>نیازمند پیگیری</option><option>ارجاع به پیمانکار</option></select></label>
+</div>
+<div class="tablewrap"><table>
+<thead><tr><th>تاریخ</th><th>نوع</th><th>محدوده</th><th>شناسه</th><th>طول</th><th>اکیپ</th><th>وضعیت</th><th>حذف</th></tr></thead>
+<tbody id="rows"></tbody></table></div>
+<p id="empty" class="muted">هنوز عملیاتی ثبت نشده است.</p>
+</div>
+</section>
+
+<section class="section" id="modules">
+<div class="panel"><h3>🧩 ماژول‌های تخصصی شبکه</h3>
+<div class="modulegrid">
+<div class="card"><span>🚧</span><b>مدیریت انسداد و سرریز</b><small class="muted">ثبت تماس، اولویت، اعزام، رفع عیب و نقاط پرتکرار</small></div>
+<div class="card"><span>🚿</span><b>شست‌وشو و لایروبی</b><small class="muted">مسیر، طول شست‌وشو، قطر و حجم رسوب</small></div>
+<div class="card"><span>🕳️</span><b>مدیریت منهول</b><small class="muted">مریی‌سازی، طوقه، درپوش و همسطح‌سازی</small></div>
+<div class="card"><span>📹</span><b>CCTV / ویدئومتری</b><small class="muted">کد عیب، فاصله عیب، شدت و فیلم</small></div>
+<div class="card"><span>🗺️</span><b>GIS و دارایی‌ها</b><small class="muted">شناسه یکتا، طول، قطر، جنس و مختصات</small></div>
+<div class="card"><span>⚙️</span><b>PM / CM</b><small class="muted">برنامه پیشگیرانه، خرابی و تعمیرات</small></div>
+<div class="card"><span>🦺</span><b>HSE</b><small class="muted">ارزیابی ریسک، گازسنجی، تهویه و مجوز کار</small></div>
+<div class="card"><span>🏗️</span><b>توسعه و بازسازی</b><small class="muted">پروژه‌ها، مقادیر اجرا و نقشه چون‌ساخت</small></div>
+<div class="card"><span>🚛</span><b>اکیپ و ناوگان</b><small class="muted">تخصیص نیرو، خودرو و تجهیزات</small></div>
+</div></div>
+</section>
+
+<section class="section" id="reports">
+<div class="panel"><h3>📊 گزارش عملکرد و شاخص‌ها</h3>
+<div class="grid">
+<div class="card"><span class="muted">میانگین طول شست‌وشو</span><strong id="avgWash">۰ متر</strong></div>
+<div class="card"><span class="muted">درصد تکمیل عملیات</span><strong id="completion">۰٪</strong></div>
+<div class="card"><span class="muted">حجم کل مکش</span><strong id="totalVol">۰ m³</strong></div>
+<div class="card"><span class="muted">هزینه ثبت‌شده</span><strong id="totalCost">۰ ریال</strong></div>
+</div>
+<div class="actions"><button class="primary" id="csv">⬇️ دریافت گزارش CSV</button></div>
+<p class="muted">شاخص‌ها بر اساس اطلاعات ثبت‌شده در این مرورگر محاسبه می‌شوند.</p>
+</div>
+</section>
+
+<section class="section" id="backup">
+<div class="panel"><h3>💾 پشتیبان‌گیری و بازیابی</h3>
+<p class="muted">برای جلوگیری از ازدست‌رفتن اطلاعات، مرتباً نسخه پشتیبان تهیه کنید.</p>
+<div class="actions">
+<button class="primary" id="backupBtn">⬇️ پشتیبان JSON</button>
+<label class="btn">⬆️ بازیابی JSON<input id="restore" type="file" accept="application/json" style="display:none"></label>
+<button id="clear">🗑️ حذف همه داده‌ها</button>
+</div>
+<div class="notice">اطلاعات فعلاً فقط در همین مرورگر و همین دستگاه ذخیره می‌شود و بین کاربران یا گوشی‌ها همگام‌سازی نمی‌شود. پیش از پاک‌کردن داده‌های مرورگر، فایل پشتیبان بگیرید.</div>
+</div>
+</section>
+
+<footer>AI Wastewater OS · سامانه هوشمند بهره‌برداری شبکه فاضلاب مرودشت</footer>
+</main>
+
+<script>
+const KEY='aiwastewater_network_ops_v1';
+let ops=[];
+try{ops=JSON.parse(localStorage.getItem(KEY)||'[]')}catch(e){ops=[]}
+const $=id=>document.getElementById(id);
+const fa=n=>Number(n||0).toLocaleString('fa-IR');
+function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function save(){localStorage.setItem(KEY,JSON.stringify(ops));render()}
+function render(){
+$('kTotal').textContent=fa(ops.length);
+$('kBlock').textContent=fa(ops.filter(x=>/انسداد|حادثه/.test(x.type)).length);
+$('kWash').textContent=fa(ops.filter(x=>/شست|لایروبی/.test(x.type)).reduce((a,x)=>a+Number(x.length||0),0));
+$('kMan').textContent=fa(ops.filter(x=>/مریی‌سازی/.test(x.type)).reduce((a,x)=>a+Number(x.manholes||0),0));
+$('kCctv').textContent=fa(ops.filter(x=>/ویدئومتری|بازرسی/.test(x.type)).length);
+$('kFollow').textContent=fa(ops.filter(x=>/نیازمند پیگیری|ارجاع به پیمانکار/.test(x.status)).length);
+$('kDev').textContent=fa(ops.filter(x=>/توسعه/.test(x.type)).reduce((a,x)=>a+Number(x.length||0),0));
+const now=new Date();
+$('kMonth').textContent=fa(ops.filter(x=>{const d=new Date(x.date);return d.getMonth()===now.getMonth()&&d.getFullYear()===now.getFullYear()}).length);
+const done=ops.filter(x=>x.status==='انجام‌شده').length;
+$('completion').textContent=fa(ops.length?Math.round(done/ops.length*100):0)+'٪';
+const wash=ops.filter(x=>/شست|لایروبی/.test(x.type));
+$('avgWash').textContent=fa(wash.length?Math.round(wash.reduce((a,x)=>a+Number(x.length||0),0)/wash.length):0)+' متر';
+$('totalVol').textContent=fa(ops.reduce((a,x)=>a+Number(x.volume||0),0))+' m³';
+$('totalCost').textContent=fa(ops.reduce((a,x)=>a+Number(x.cost||0),0))+' ریال';
+const q=($('search')?.value||'').toLowerCase(),ft=$('filterType')?.value||'',fs=$('filterStatus')?.value||'';
+const filtered=ops.map((x,i)=>({...x,_i:i})).filter(x=>(!ft||x.type===ft)&&(!fs||x.status===fs)&&(!q||Object.values(x).join(' ').toLowerCase().includes(q)));
+$('rows').innerHTML=filtered.slice().reverse().map(x=>'<tr><td>'+esc(x.date)+'</td><td>'+esc(x.type)+'</td><td>'+esc(x.area)+'</td><td>'+esc(x.asset)+'</td><td>'+fa(x.length)+'</td><td>'+esc(x.crew)+'</td><td><span class="tag '+(x.status==='نیازمند پیگیری'?'warn':x.status==='ارجاع به پیمانکار'?'danger':'')+'">'+esc(x.status)+'</span></td><td><button onclick="del('+x._i+')">حذف</button></td></tr>').join('');
+$('empty').style.display=filtered.length?'none':'block';
+}
+window.del=i=>{if(confirm('این رکورد حذف شود؟')){ops.splice(i,1);save()}};
+function tab(id){
+document.querySelectorAll('.section').forEach(x=>x.classList.toggle('active',x.id===id));
+document.querySelectorAll('nav button').forEach(x=>x.classList.toggle('active',x.dataset.tab===id));
+if(id==='log')render();
+window.scrollTo({top:0,behavior:'smooth'});
+}
+document.querySelectorAll('nav button').forEach(b=>b.onclick=()=>tab(b.dataset.tab));
+document.querySelectorAll('[data-type]').forEach(b=>b.onclick=()=>{tab('register');$('opType').value=b.dataset.type});
+$('opForm').onsubmit=e=>{
+e.preventDefault();
+const o=Object.fromEntries(new FormData(e.target).entries());
+ops.push(o);save();e.target.reset();
+alert('عملیات با موفقیت در این دستگاه ذخیره شد.');tab('log');
+};
+$('search').addEventListener('input',render);
+$('filterStatus').addEventListener('change',render);
+const types=['رفع انسداد','حادثه شبکه','شست‌وشوی شبکه','لایروبی','مریی‌سازی منهول','همسطح‌سازی منهول','بازرسی منهول','ویدئومتری','PM','CM / تعمیرات','توسعه/اصلاح','عملیات HSE','سایر'];
+$('filterType').innerHTML+='<option>'+types.join('</option><option>')+'</option>';
+$('filterType').addEventListener('change',render);
+function download(name,content,type){
+const a=document.createElement('a'),u=URL.createObjectURL(new Blob([content],{type}));
+a.href=u;a.download=name;a.click();URL.revokeObjectURL(u);
+}
+$('backupBtn').onclick=()=>download('network-backup.json',JSON.stringify(ops,null,2),'application/json');
+$('restore').onchange=async e=>{
+try{
+const data=JSON.parse(await e.target.files[0].text());
+if(!Array.isArray(data))throw Error();
+if(confirm('اطلاعات فعلی با فایل پشتیبان جایگزین شود؟')){ops=data;save();alert('بازیابی انجام شد');}
+}catch(err){alert('فایل پشتیبان معتبر نیست');}
+e.target.value='';
+};
+$('clear').onclick=()=>{if(confirm('همه اطلاعات این مرورگر حذف شود؟ ابتدا پشتیبان بگیرید.')){ops=[];save();}};
+$('csv').onclick=()=>{
+const cols=['date','type','status','area','asset','diameter','length','material','manholes','crew','vehicle','volume','cause','priority','response','location','defect','owner','deadline','ticket','cost','start','end','media','description'];
+const rows=[cols.join(','),...ops.map(o=>cols.map(k=>'"'+String(o[k]??'').replace(/"/g,'""')+'"').join(','))];
+download('network-operations.csv','\uFEFF'+rows.join('\n'),'text/csv;charset=utf-8');
+};
+render();
+</script>
+</body>
+</html>
